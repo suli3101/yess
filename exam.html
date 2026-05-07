@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCR Psychology — Paper 2 Core Studies</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#0e0e14;--s1:#16161e;--s2:#1d1d27;--s3:#242432;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e2e2ee;--muted:#6e6e95;
+  --acc:#7c6ff7;--acc2:#a89eff;
+  --green:#3ecf82;--red:#e85d75;--amber:#f0a94a;--blue:#5ba4f5;--purple:#c77ef0;--teal:#3ecfc4;--pink:#f05bb4;
+  --social:#5ba4f5;--cog:#3ecf82;--dev:#f0a94a;--bio:#c77ef0;--ind:#f05bb4;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,sans-serif;line-height:1.6;font-size:14px}
+
+/* TOP NAV */
+.topbar{background:var(--s1);border-bottom:0.5px solid var(--border2);position:sticky;top:0;z-index:200;padding:0 1rem}
+.nav-scroll{display:flex;gap:2px;overflow-x:auto;padding:8px 0;max-width:1100px;margin:0 auto}
+.nav-scroll::-webkit-scrollbar{height:2px}.nav-scroll::-webkit-scrollbar-thumb{background:var(--border2)}
+.nb{padding:5px 12px;border-radius:6px;border:none;background:transparent;color:var(--muted);font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s}
+.nb:hover{color:var(--text);background:var(--s2)}
+.nb.on{background:var(--acc);color:#fff;font-weight:500}
+
+.wrap{max-width:1000px;margin:0 auto;padding:1.5rem 1rem}
+.sec{display:none}.sec.on{display:block}
+
+/* PAGE HEADER */
+.ph{text-align:center;padding:2rem 0 1.5rem}
+.ph h1{font-size:1.75rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem}
+.ph p{font-size:13px;color:var(--muted)}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:.75rem}
+.badge{padding:3px 10px;border-radius:100px;font-size:11px;font-weight:500;border:0.5px solid}
+
+/* STUDY CARDS */
+.study-card{background:var(--s1);border:0.5px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.study-hdr{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;transition:background .15s}
+.study-hdr:hover{background:var(--s2)}
+.study-hdr-left{flex:1;min-width:0}
+.study-name{font-size:14px;font-weight:600}
+.study-meta{font-size:11px;color:var(--muted);margin-top:2px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.area-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.arrow{font-size:11px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.arrow.open{transform:rotate(180deg)}
+.study-body{display:none;padding:0 18px 18px}
+.study-body.open{display:block}
+
+/* STUDY CONTENT GRID */
+.study-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+@media(max-width:640px){.study-grid{grid-template-columns:1fr}}
+.study-block{background:var(--s2);border-radius:10px;padding:12px 14px}
+.block-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.block-content{font-size:12.5px;line-height:1.7}
+.block-content ul{padding-left:0;list-style:none}
+.block-content li{padding-left:14px;position:relative;margin-bottom:4px}
+.block-content li::before{content:"·";position:absolute;left:0;color:var(--muted)}
+.block-content li:last-child{margin-bottom:0}
+.pro-block{background:rgba(62,207,130,.07);border-left:2px solid var(--green)}
+.con-block{background:rgba(232,93,117,.07);border-left:2px solid var(--red)}
+.link-block{background:rgba(124,111,247,.07);border-left:2px solid var(--acc)}
+.full-width{grid-column:1/-1}
+
+/* CHIPS */
+.chip{display:inline-block;font-size:10px;padding:2px 7px;border-radius:100px;font-weight:600;margin-right:4px}
+.ch-s{background:rgba(91,164,245,.15);color:var(--social);border:0.5px solid rgba(91,164,245,.25)}
+.ch-c{background:rgba(62,207,130,.15);color:var(--cog);border:0.5px solid rgba(62,207,130,.25)}
+.ch-d{background:rgba(240,169,74,.15);color:var(--dev);border:0.5px solid rgba(240,169,74,.25)}
+.ch-b{background:rgba(199,126,240,.15);color:var(--bio);border:0.5px solid rgba(199,126,240,.25)}
+.ch-i{background:rgba(240,91,180,.15);color:var(--ind);border:0.5px solid rgba(240,91,180,.25)}
+.ch-cl{background:rgba(255,255,255,.06);color:var(--muted);border:0.5px solid var(--border2)}
+
+/* FILTER ROW */
+.filter-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.25rem}
+.fb{padding:5px 13px;border-radius:100px;border:0.5px solid var(--border2);background:transparent;color:var(--muted);font-size:11.5px;cursor:pointer;font-family:inherit;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc2)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:500}
+
+/* DEBATES SECTION */
+.section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:1.5rem 0 .75rem;padding-left:2px}
+.debate-card{background:var(--s1);border:0.5px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.debate-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;transition:background .15s}
+.debate-hdr:hover{background:var(--s2)}
+.debate-title{font-size:14px;font-weight:600}
+.debate-body{display:none;padding:4px 18px 18px}
+.debate-body.open{display:block}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.col-block{background:var(--s2);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.7}
+.col-block h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.col-block ul{padding-left:0;list-style:none}
+.col-block li{padding-left:14px;position:relative;margin-bottom:4px}
+.col-block li::before{content:"·";position:absolute;left:0;color:var(--muted)}
+.note-block{background:rgba(124,111,247,.07);border-radius:10px;padding:12px 14px;margin-top:8px;font-size:12.5px;line-height:1.7;border-left:2px solid var(--acc)}
+.note-block strong{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px;color:var(--acc)}
+.studies-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.study-tag{font-size:11px;padding:2px 10px;border-radius:100px;border:0.5px solid var(--border2);color:var(--muted)}
+.area-card{background:var(--s1);border:0.5px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.area-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;transition:background .15s}
+.area-hdr:hover{background:var(--s2)}
+.area-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.area-body{display:none;padding:4px 18px 18px}
+.area-body.open{display:block}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px}
+@media(max-width:640px){.three-col{grid-template-columns:1fr}}
+.ctable{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.ctable th{background:var(--s3);padding:8px 10px;text-align:left;font-weight:600;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-bottom:0.5px solid var(--border2)}
+.ctable td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;line-height:1.55}
+.ctable tr:last-child td{border-bottom:none}
+.ctable tr:hover td{background:var(--s2)}
+
+/* ════════════════════════════════
+   FLASHCARD SECTION
+════════════════════════════════ */
+.fc-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.25rem;align-items:center}
+.fc-select{background:var(--s2);border:0.5px solid var(--border2);color:var(--text);font-family:inherit;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer;outline:none}
+.fc-select:focus{border-color:var(--acc)}
+.fc-btn{padding:6px 16px;border-radius:8px;border:0.5px solid var(--border2);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.fc-btn:hover{border-color:var(--acc);color:var(--acc2)}
+.fc-btn.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:500}
+.fc-btn.primary:hover{background:var(--acc2);border-color:var(--acc2)}
+
+.fc-progress{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;font-size:12px;color:var(--muted)}
+.fc-bar{flex:1;height:4px;background:var(--s3);border-radius:2px;overflow:hidden}
+.fc-bar-fill{height:100%;background:var(--acc);border-radius:2px;transition:width .3s}
+.fc-counter{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--acc)}
+
+/* Card flip container */
+.card-scene{width:100%;max-width:700px;margin:0 auto 1.5rem;perspective:1200px;cursor:pointer}
+.card-flip{width:100%;min-height:280px;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.card-flip.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;width:100%;min-height:280px;backface-visibility:hidden;border-radius:16px;padding:28px;display:flex;flex-direction:column;border:0.5px solid var(--border2)}
+.card-front{background:linear-gradient(135deg,var(--s1) 0%,var(--s2) 100%)}
+.card-back{background:linear-gradient(135deg,var(--s2) 0%,#1a1a2e 100%);transform:rotateY(180deg)}
+.card-face-label{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-face-label span{flex:1}
+.card-study-name{font-size:11px;font-weight:600;color:var(--acc2);margin-bottom:8px}
+.card-aspect{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:auto;line-height:1.3}
+.card-hint{font-size:11px;color:var(--muted);margin-top:16px;text-align:center}
+.card-answer{font-size:13px;line-height:1.75;color:var(--text);flex:1}
+.card-answer ul{list-style:none;padding:0}
+.card-answer li{padding-left:16px;position:relative;margin-bottom:6px}
+.card-answer li::before{content:"→";position:absolute;left:0;color:var(--acc);font-size:10px;top:3px}
+
+/* Navigation under card */
+.fc-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-bottom:1.5rem}
+.fc-nav-btn{width:42px;height:42px;border-radius:50%;border:0.5px solid var(--border2);background:var(--s1);color:var(--text);font-size:18px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.fc-nav-btn:hover{border-color:var(--acc);color:var(--acc)}
+.fc-nav-btn:disabled{opacity:.3;cursor:default}
+.fc-flip-btn{padding:8px 24px;border-radius:100px;border:0.5px solid var(--acc);background:rgba(124,111,247,.1);color:var(--acc2);font-size:12.5px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .15s}
+.fc-flip-btn:hover{background:rgba(124,111,247,.2)}
+
+/* Self-rating buttons */
+.fc-rate{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.fc-rate-btn{padding:6px 18px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:500;border:0.5px solid;transition:all .15s}
+.rate-no{border-color:rgba(232,93,117,.4);color:var(--red);background:rgba(232,93,117,.07)}
+.rate-no:hover{background:rgba(232,93,117,.15)}
+.rate-maybe{border-color:rgba(240,169,74,.4);color:var(--amber);background:rgba(240,169,74,.07)}
+.rate-maybe:hover{background:rgba(240,169,74,.15)}
+.rate-yes{border-color:rgba(62,207,130,.4);color:var(--green);background:rgba(62,207,130,.07)}
+.rate-yes:hover{background:rgba(62,207,130,.15)}
+
+/* Aspect filter pills */
+.aspect-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.apill{padding:4px 12px;border-radius:100px;border:0.5px solid var(--border2);background:transparent;color:var(--muted);font-size:11px;cursor:pointer;font-family:inherit;transition:all .15s}
+.apill:hover{border-color:var(--acc);color:var(--acc2)}
+.apill.on{border-color:var(--acc);background:rgba(124,111,247,.15);color:var(--acc2)}
+
+/* Completion screen */
+.fc-done{text-align:center;padding:3rem 1rem;background:var(--s1);border-radius:16px;border:0.5px solid var(--border)}
+.fc-done h2{font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+.fc-done p{color:var(--muted);font-size:13px;margin-bottom:1.5rem}
+.fc-stats{display:flex;gap:16px;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap}
+.fc-stat{background:var(--s2);border-radius:10px;padding:12px 20px;text-align:center}
+.fc-stat-n{font-size:1.75rem;font-weight:700;line-height:1}
+.fc-stat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+/* ════════════════════════════════
+   EXAM PRACTICE SECTION
+════════════════════════════════ */
+.exam-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem;align-items:center}
+.exam-select{background:var(--s2);border:0.5px solid var(--border2);color:var(--text);font-family:inherit;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer;outline:none}
+.exam-select:focus{border-color:var(--acc)}
+
+.qcard{background:var(--s1);border:0.5px solid var(--border);border-radius:16px;padding:22px;margin-bottom:18px}
+.qcard-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.qmark-badge{background:var(--acc);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.qtext{font-size:14px;font-weight:600;line-height:1.5;flex:1}
+.qmeta{font-size:11px;color:var(--muted);margin-bottom:14px;display:flex;gap:8px;flex-wrap:wrap}
+.qmeta span{display:flex;align-items:center;gap:4px}
+
+.answer-area{width:100%;min-height:140px;background:var(--s2);border:0.5px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:13px;padding:12px 14px;resize:vertical;outline:none;transition:border .15s;line-height:1.65}
+.answer-area:focus{border-color:var(--acc)}
+.answer-area::placeholder{color:var(--muted)}
+.answer-area:disabled{opacity:.6}
+
+.qa-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.qa-btn{padding:7px 18px;border-radius:8px;font-size:12.5px;cursor:pointer;font-family:inherit;font-weight:500;border:0.5px solid;transition:all .15s}
+.qa-submit{background:var(--acc);border-color:var(--acc);color:#fff}
+.qa-submit:hover{background:var(--acc2);border-color:var(--acc2)}
+.qa-submit:disabled{opacity:.5;cursor:default}
+.qa-skip{background:transparent;border-color:var(--border2);color:var(--muted)}
+.qa-skip:hover{border-color:var(--acc);color:var(--acc2)}
+.qa-new{background:transparent;border-color:rgba(62,207,130,.4);color:var(--green)}
+.qa-new:hover{background:rgba(62,207,130,.07)}
+.qa-word-count{font-size:11px;color:var(--muted);margin-left:auto;font-family:'JetBrains Mono',monospace}
+
+/* Marking feedback */
+.feedback-panel{margin-top:14px;border-radius:12px;overflow:hidden;border:0.5px solid var(--border2)}
+.feedback-score-bar{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--s2)}
+.fscore-num{font-size:1.5rem;font-weight:700;line-height:1}
+.fscore-denom{font-size:13px;color:var(--muted);margin-top:2px}
+.fscore-label{font-size:12px;font-weight:600;margin-bottom:2px}
+.fscore-grade{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.fgrade-bar{flex:1;height:6px;background:var(--s3);border-radius:3px;overflow:hidden}
+.fgrade-fill{height:100%;border-radius:3px;transition:width .6s}
+
+.feedback-body{padding:14px 18px;background:var(--s1);font-size:12.5px;line-height:1.75}
+.fb-section{margin-bottom:12px}
+.fb-section:last-child{margin-bottom:0}
+.fb-section-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.fb-point{padding:6px 10px;border-radius:7px;margin-bottom:5px;display:flex;gap:8px;align-items:flex-start}
+.fb-point-icon{flex-shrink:0;margin-top:1px;font-size:13px}
+.fb-point-text{flex:1}
+.fp-good{background:rgba(62,207,130,.08);border-left:2px solid var(--green)}
+.fp-miss{background:rgba(240,169,74,.08);border-left:2px solid var(--amber)}
+.fp-wrong{background:rgba(232,93,117,.08);border-left:2px solid var(--red)}
+.fp-tip{background:rgba(124,111,247,.08);border-left:2px solid var(--acc)}
+
+.model-answer-toggle{display:flex;align-items:center;gap:8px;padding:10px 18px;background:var(--s2);cursor:pointer;font-size:12px;color:var(--muted);border-top:0.5px solid var(--border);transition:background .15s;user-select:none}
+.model-answer-toggle:hover{background:var(--s3);color:var(--text)}
+.model-answer-body{display:none;padding:14px 18px;background:var(--s2);border-top:0.5px solid var(--border);font-size:12.5px;line-height:1.75;color:var(--text)}
+.model-answer-body.open{display:block}
+
+/* Loading state */
+.loading-dots{display:inline-flex;gap:4px;align-items:center}
+.loading-dots span{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:ld .9s infinite}
+.loading-dots span:nth-child(2){animation-delay:.15s}
+.loading-dots span:nth-child(3){animation-delay:.3s}
+@keyframes ld{0%,80%,100%{transform:scale(.7);opacity:.5}40%{transform:scale(1);opacity:1}}
+
+/* Question type selector */
+.qtype-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:1.25rem}
+.qtype-card{background:var(--s1);border:0.5px solid var(--border);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .15s}
+.qtype-card:hover{border-color:var(--acc);background:var(--s2)}
+.qtype-card.on{border-color:var(--acc);background:rgba(124,111,247,.08)}
+.qtype-card-title{font-size:12.5px;font-weight:600;margin-bottom:3px}
+.qtype-card-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.qtype-marks{font-size:10px;color:var(--acc);font-weight:600;margin-top:5px}
+
+/* Streaks / stats bar */
+.stats-bar{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:1.5rem}
+.stat-pill{background:var(--s1);border:0.5px solid var(--border);border-radius:10px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:12px}
+.stat-pill-n{font-size:1.1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--acc)}
+.stat-pill-l{color:var(--muted);font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<div class="nav-scroll">
+  <button class="nb on" onclick="show('overview',this)">Overview</button>
+  <button class="nb" onclick="show('social',this)">Social</button>
+  <button class="nb" onclick="show('cognitive',this)">Cognitive</button>
+  <button class="nb" onclick="show('developmental',this)">Developmental</button>
+  <button class="nb" onclick="show('biological',this)">Biological</button>
+  <button class="nb" onclick="show('individual',this)">Individual diff</button>
+  <button class="nb" onclick="show('areas',this)">Areas</button>
+  <button class="nb" onclick="show('debates',this)">Debates</button>
+  <button class="nb" onclick="show('flashcards',this)">🃏 Flashcards</button>
+  <button class="nb" onclick="show('examq',this)">📝 Exam Practice</button>
+  <button class="nb" onclick="show('examtips',this)">Exam Tips</button>
+</div>
+</div>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="overview" class="sec on">
+<div class="wrap">
+<div class="ph">
+  <h1>Paper 2 — Core Studies</h1>
+  <p>OCR H567/02 · 105 marks · 2 hours · 35% of A Level</p>
+  <div class="badge-row">
+    <span class="badge" style="color:var(--blue);border-color:rgba(91,164,245,.3);background:rgba(91,164,245,.08)">Section A: Core studies ~35 marks</span>
+    <span class="badge" style="color:var(--amber);border-color:rgba(240,169,74,.3);background:rgba(240,169,74,.08)">Section B: Areas, perspectives &amp; debates ~40 marks</span>
+    <span class="badge" style="color:var(--purple);border-color:rgba(199,126,240,.3);background:rgba(199,126,240,.08)">Section C: Practical applications ~30 marks</span>
+    <span class="badge" style="color:var(--green);border-color:rgba(62,207,130,.3);background:rgba(62,207,130,.08)">🃏 Flashcards — all 20 studies</span>
+    <span class="badge" style="color:var(--pink);border-color:rgba(240,91,180,.3);background:rgba(240,91,180,.08)">📝 AI-powered exam practice</span>
+  </div>
+</div>
+
+<div class="section-label">The 20 core studies at a glance</div>
+<div class="filter-row">
+  <button class="fb on" onclick="filterArea('all',this)">All (20)</button>
+  <button class="fb" onclick="filterArea('social',this)">Social (4)</button>
+  <button class="fb" onclick="filterArea('cognitive',this)">Cognitive (4)</button>
+  <button class="fb" onclick="filterArea('developmental',this)">Developmental (4)</button>
+  <button class="fb" onclick="filterArea('biological',this)">Biological (4)</button>
+  <button class="fb" onclick="filterArea('individual',this)">Individual diff (4)</button>
+</div>
+<table class="ctable" id="study-table">
+<tr><th>Study</th><th>Area</th><th>Theme</th><th>Type</th><th>Method</th></tr>
+<tr data-a="social"><td><strong>Milgram (1963)</strong></td><td><span class="chip ch-s">Social</span></td><td>Responses to authority</td><td>Classic</td><td>Lab experiment</td></tr>
+<tr data-a="social"><td><strong>Bocchiaro et al. (2012)</strong></td><td><span class="chip ch-s">Social</span></td><td>Responses to authority</td><td>Contemporary</td><td>Lab experiment</td></tr>
+<tr data-a="social"><td><strong>Piliavin et al. (1969)</strong></td><td><span class="chip ch-s">Social</span></td><td>Responses to people in need</td><td>Classic</td><td>Field experiment</td></tr>
+<tr data-a="social"><td><strong>Levine et al. (2001)</strong></td><td><span class="chip ch-s">Social</span></td><td>Responses to people in need</td><td>Contemporary</td><td>Observation (field)</td></tr>
+<tr data-a="cognitive"><td><strong>Loftus &amp; Palmer (1974)</strong></td><td><span class="chip ch-c">Cognitive</span></td><td>Memory</td><td>Classic</td><td>Lab experiment</td></tr>
+<tr data-a="cognitive"><td><strong>Grant et al. (1998)</strong></td><td><span class="chip ch-c">Cognitive</span></td><td>Memory</td><td>Contemporary</td><td>Lab experiment</td></tr>
+<tr data-a="cognitive"><td><strong>Moray (1959)</strong></td><td><span class="chip ch-c">Cognitive</span></td><td>Attention</td><td>Classic</td><td>Lab experiment</td></tr>
+<tr data-a="cognitive"><td><strong>Simons &amp; Chabris (1999)</strong></td><td><span class="chip ch-c">Cognitive</span></td><td>Attention</td><td>Contemporary</td><td>Lab experiment</td></tr>
+<tr data-a="developmental"><td><strong>Bandura et al. (1961)</strong></td><td><span class="chip ch-d">Developmental</span></td><td>External influences on children</td><td>Classic</td><td>Lab experiment</td></tr>
+<tr data-a="developmental"><td><strong>Chaney et al. (2004)</strong></td><td><span class="chip ch-d">Developmental</span></td><td>External influences on children</td><td>Contemporary</td><td>Quasi-experiment</td></tr>
+<tr data-a="developmental"><td><strong>Kohlberg (1968)</strong></td><td><span class="chip ch-d">Developmental</span></td><td>Moral development</td><td>Classic</td><td>Structured interview</td></tr>
+<tr data-a="developmental"><td><strong>Lee et al. (1997)</strong></td><td><span class="chip ch-d">Developmental</span></td><td>Moral development</td><td>Contemporary</td><td>Self-report / questionnaire</td></tr>
+<tr data-a="biological"><td><strong>Sperry (1968)</strong></td><td><span class="chip ch-b">Biological</span></td><td>Regions of the brain</td><td>Classic</td><td>Quasi-experiment</td></tr>
+<tr data-a="biological"><td><strong>Casey et al. (2011)</strong></td><td><span class="chip ch-b">Biological</span></td><td>Regions of the brain</td><td>Contemporary</td><td>Quasi-experiment / fMRI</td></tr>
+<tr data-a="biological"><td><strong>Blakemore &amp; Cooper (1970)</strong></td><td><span class="chip ch-b">Biological</span></td><td>Brain plasticity</td><td>Classic</td><td>Lab experiment (animal)</td></tr>
+<tr data-a="biological"><td><strong>Maguire et al. (2000)</strong></td><td><span class="chip ch-b">Biological</span></td><td>Brain plasticity</td><td>Contemporary</td><td>Quasi-experiment / MRI</td></tr>
+<tr data-a="individual"><td><strong>Freud (1909)</strong></td><td><span class="chip ch-i">Ind diff</span></td><td>Understanding disorders</td><td>Classic</td><td>Case study</td></tr>
+<tr data-a="individual"><td><strong>Baron-Cohen et al. (1997)</strong></td><td><span class="chip ch-i">Ind diff</span></td><td>Understanding disorders</td><td>Contemporary</td><td>Quasi-experiment</td></tr>
+<tr data-a="individual"><td><strong>Gould (1982)</strong></td><td><span class="chip ch-i">Ind diff</span></td><td>Measuring differences</td><td>Classic</td><td>Secondary source analysis</td></tr>
+<tr data-a="individual"><td><strong>Hancock et al. (2011)</strong></td><td><span class="chip ch-i">Ind diff</span></td><td>Measuring differences</td><td>Contemporary</td><td>Content analysis</td></tr>
+</table>
+
+<div class="section-label" style="margin-top:1.5rem">Quick start — new features</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="note-block"><strong>🃏 Flashcards</strong>Tap "Flashcards" in the nav. Choose a study area and which aspects (Aim, Design, Sample…) you want to drill. Cards flip to reveal answers. Self-rate as 🔴 Not sure / 🟡 Getting there / 🟢 Got it — cards you struggle with come back more often.</div>
+<div class="note-block"><strong>📝 AI Exam Practice</strong>Tap "Exam Practice". Choose a question type (2-mark, 4-mark, 5-mark, 15-mark essay…) and a topic. An AI generates an original exam-style question. Type your answer and submit — the AI marks it against the real OCR mark scheme and gives detailed feedback with a model answer.</div>
+</div>
+</div>
+</div>
+
+<!-- ══════════ SOCIAL ══════════ -->
+<div id="social" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Social Area</h1><p>4 studies · 2 themes · Authority &amp; helping behaviour</p></div>
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Milgram (1963) — Obedience</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--social)"></span><span class="chip ch-s">Social</span><span class="chip ch-cl">Classic</span>Theme: Responses to authority</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether ordinary Americans would obey an authority figure who instructed them to harm an innocent person</li><li>To test the situational explanation for obedience</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment; independent measures</li><li>Quantitative data: % who obeyed at each voltage</li><li>Standardised procedure — confederate actor played learner</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>40 male participants aged 20–50</li><li>Volunteer sample — responded to newspaper ad</li><li>All American — New Haven, Connecticut</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participant assigned "teacher", confederate assigned "learner" (fixed)</li><li>Learner strapped to chair in adjacent room; teacher administered electric shocks for wrong answers</li><li>Shocks ranged 15–450V in 15V increments; shock generator labelled up to "XXX Danger"</li><li>Four verbal prods used by experimenter (e.g. "You must continue")</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>65% administered the maximum 450V shock</li><li>All participants continued to 300V</li><li>Many showed signs of extreme stress (sweating, trembling)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Ordinary people will obey authority figures even when instructed to harm others</li><li>Situational factors (uniform, legitimate setting) override individual conscience</li><li>Challenges dispositional explanation ("Germans are different")</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Highly controlled — standardised procedure enables replication</li><li>High mundane realism — participants genuinely believed situation</li><li>Groundbreaking — changed our understanding of human obedience</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Serious ethical issues — deception, psychological harm, right to withdraw unclear</li><li>Low population validity — all male, American, volunteer</li><li>Demand characteristics — lab setting may have cued compliance</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Individual vs situational:</strong> situational factors (uniform, proximity) determined obedience</li><li><strong>Ethics:</strong> landmark case for ethical guidelines in psychology</li><li><strong>Usefulness:</strong> explains atrocities, police/military obedience</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Bocchiaro et al. (2012) — Disobedience and whistleblowing</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--social)"></span><span class="chip ch-s">Social</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Responses to authority</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate obedience, disobedience, and whistleblowing when asked to carry out an unethical task by an authority figure</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment — independent measures</li><li>Comparison with predicted behaviour (prior questionnaire)</li><li>Three possible responses: comply, disobey, whistleblow</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>149 students (78 female, 71 male)</li><li>VU University Amsterdam — opportunity sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participants asked to write a recruitment letter for an unethical sensory deprivation study on behalf of a fake researcher</li><li>Could: comply (write letter), disobey (refuse), or whistleblow (report to ethics board via a box in the waiting room)</li><li>Separate group predicted their own and others' behaviour</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>76.5% complied — wrote the unethical letter</li><li>14.3% disobeyed only</li><li>9.4% whistleblew</li><li>Predictors underestimated compliance and overestimated disobedience</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Most people comply with authority even when the task is clearly unethical</li><li>Whistleblowing is extremely rare — individuals overestimate their own moral courage</li><li>Supports Milgram's findings in a modern, less controversial paradigm</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>More ethically acceptable than Milgram — no physical harm</li><li>Adds whistleblowing as a third response option — extends Milgram</li><li>Cross-cultural replication — confirms obedience is not culturally unique</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Student sample — not representative; reduces population validity</li><li>Still involves deception — ethical questions remain</li><li>Writing a letter less extreme than electric shocks — difficult to compare directly</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Individual vs situational:</strong> no personality trait predicted compliance; situation drives behaviour</li><li><strong>Ethnocentrism:</strong> cross-cultural design addresses Milgram's American-only sample</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Piliavin et al. (1969) — Subway Samaritan</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--social)"></span><span class="chip ch-s">Social</span><span class="chip ch-cl">Classic</span>Theme: Responses to people in need</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate the conditions under which bystanders will help a stranger in need, and test whether characteristics of the victim and cost of helping affect bystander intervention</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Field experiment — natural environment (NY subway)</li><li>Independent measures: drunk vs ill victim; race of victim</li><li>DV: % helping, time to help, number of helpers</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>4,450 passengers on New York subway (IND 8th Avenue line)</li><li>Opportunity sample — naturally occurring</li><li>Mix of races and genders in natural proportions</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Confederate "victim" collapsed in subway carriage after 70 seconds of ride</li><li>Conditions: victim appeared drunk (smelled of alcohol, carried bottle) OR ill (walked with cane)</li><li>Race of victim varied: Black or White confederate</li><li>Observers recorded helping behaviour covertly</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Ill victim helped 95% of the time (within 70s)</li><li>Drunk victim helped 50% of the time</li><li>Race effect: slight in-group preference (own race helped slightly more)</li><li>Bystander effect less pronounced than expected in enclosed space</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Helping is influenced by the cost-reward calculation (Arousal: Cost-Reward model)</li><li>Perceived cause of need (illness vs intoxication) affects likelihood of helping</li><li>Physical context (no escape) reduces diffusion of responsibility</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>High ecological validity — real-world setting, natural behaviour</li><li>No demand characteristics — participants unaware they were in a study</li><li>Large sample (4,450 opportunities)</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Ethical concerns — participants had no right to withdraw or give consent</li><li>Low internal validity — many extraneous variables in a field setting</li><li>Only New York subway — cannot generalise to other cultures/settings</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Individual vs situational:</strong> situational cost-reward, not individual values, determined helping</li><li><strong>Ethics:</strong> no consent; participants distressed by witnessing collapse</li><li><strong>Usefulness:</strong> informs understanding of bystander behaviour in emergencies</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Levine et al. (2001) — Cross-cultural altruism</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--social)"></span><span class="chip ch-s">Social</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Responses to people in need</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether rates of helping behaviour vary across cultures and cities, and what factors predict helping rates</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Cross-cultural field observation</li><li>23 cities in major world countries</li><li>Three standardised helping scenarios</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Passersby in 23 cities across multiple continents</li><li>Opportunistic — whoever was present</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Scenario 1: dropping pen — would someone pick it up?</li><li>Scenario 2: limping with injured leg, dropping magazines</li><li>Scenario 3: blind person needing help crossing road</li><li>Observers recorded helping behaviour in each city</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Rio de Janeiro (Brazil) and San José (Costa Rica) highest helping rates</li><li>Kuala Lumpur and Amsterdam among lowest</li><li>Overall helping rate 82.5% for blind person scenario</li><li>Cultural factors (simpatía — value of helpfulness) predicted helping</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Helping behaviour is culturally variable — not universal</li><li>Piliavin's model cannot fully explain cross-cultural variation</li><li>Collectivist cultures (simpatía) show higher helping rates</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Cross-cultural — challenges ethnocentrism of Piliavin's US-only study</li><li>High ecological validity — natural field setting</li><li>Large number of cities increases generalisability</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>No consent — ethical issues remain</li><li>Situational factors uncontrolled (time of day, weather, crowd density)</li><li>City-level data doesn't capture individual variation within cultures</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Ethnocentrism:</strong> directly addresses Western-centric models of prosocial behaviour</li><li><strong>Nature vs nurture:</strong> cultural variation supports nurture explanation for altruism</li></ul></div></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ COGNITIVE ══════════ -->
+<div id="cognitive" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Cognitive Area</h1><p>4 studies · 2 themes · Memory &amp; attention</p></div>
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Loftus &amp; Palmer (1974) — Eyewitness testimony</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--cog)"></span><span class="chip ch-c">Cognitive</span><span class="chip ch-cl">Classic</span>Theme: Memory</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether the wording of a question can alter a witness's memory of an event (post-event information effect)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Two experiments — lab; independent measures</li><li>Exp 1 IV: verb used (smashed/collided/bumped/hit/contacted)</li><li>Exp 2 IV: smashed vs hit vs no question asked about glass</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Exp 1: 45 students (University of Washington)</li><li>Exp 2: 150 students</li><li>Both: opportunity samples, American</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participants watched film clips of car accidents</li><li>Asked: "About how fast were the cars going when they _____ each other?"</li><li>Exp 2: one week later asked "Did you see any broken glass?" (no glass in film)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Exp 1: "smashed" → mean estimate 40.8 mph; "contacted" → 31.8 mph</li><li>Exp 2: "smashed" group 32% recalled broken glass; "hit" group 14%; control 12%</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Post-event questions can distort memory — reconstructive memory</li><li>Leading questions alter the memory trace itself (substitution hypothesis)</li><li>Implications for reliability of eyewitness testimony in court</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>High control — standardised film clips ensure all Ps saw same accident</li><li>Cause-and-effect established — verb wording directly changed estimates</li><li>Hugely applied — changed police interviewing and legal procedures</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Low ecological validity — film clips not as emotionally arousing as real accidents</li><li>Student sample — low population validity</li><li>Demand characteristics — unusual to estimate speed in a psychology study</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Usefulness:</strong> reformed police interview techniques; cognitive interview based on this work</li><li><strong>Cognitive approach:</strong> information processing model — memory as reconstructive, not reproductive</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Grant et al. (1998) — Context-dependent memory</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--cog)"></span><span class="chip ch-c">Cognitive</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Memory</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether recall is better when the learning environment matches the recall environment (context-dependent memory)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment — independent measures</li><li>2×2 design: silent/noisy learning × silent/noisy test</li><li>Four conditions: SS, SN, NS, NN</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>39 undergraduate students (psychology)</li><li>Opportunity sample — one university</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participants read a two-page article about psychoimmunology</li><li>Read in either silence or with background café noise</li><li>Short-answer test and multiple-choice test in either silence or noise</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Matched conditions (SS and NN) scored significantly higher than mismatched</li><li>Silent-silent condition had highest scores overall</li><li>Context match improved both short-answer and MCQ performance</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Memory is context-dependent — recall is better when context at encoding matches context at retrieval</li><li>Supports encoding specificity principle</li><li>Students should revise in conditions similar to exam environment</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Well-controlled — 2×2 design isolates context variable precisely</li><li>Applied value — directly relevant to how students should revise</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Student sample — low population validity</li><li>Artificial task (psychoimmunology article) — not typical revision material</li><li>Short-term study — no test of long-term memory effects</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Usefulness:</strong> exam revision advice; library vs noisy café revision</li><li><strong>Cognitive approach:</strong> encoding specificity — memory as a cue-dependent retrieval process</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Moray (1959) — Dichotic listening / attention</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--cog)"></span><span class="chip ch-c">Cognitive</span><span class="chip ch-cl">Classic</span>Theme: Attention</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate selective attention — specifically, whether unattended messages can break through into conscious awareness, and what determines this</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment — repeated measures across three tasks</li><li>DV: recall of unattended channel material</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Participants from Oxford University</li><li>Small samples for each experiment (not specified precisely)</li><li>Opportunity sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participants wore headphones; different messages played to each ear (dichotic listening)</li><li>Shadowing task: repeat the attended ear message aloud</li><li>Exp 1: list of words in attended ear repeated 35× — could participants recall from unattended ear?</li><li>Exp 2: participant's own name presented in unattended channel — detected?</li><li>Exp 3: instruction to switch ears — followed?</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Exp 1: rarely noticed repeated words in unattended ear</li><li>Exp 2: 33% detected own name in unattended channel</li><li>Exp 3: ~20% followed switch instruction to other ear</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Most unattended information is filtered out — supports Broadbent's filter theory</li><li>But personally meaningful stimuli (own name) can break through — affective filter</li><li>Attention is selective but not completely impermeable</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>High control — headphones allow precise delivery of stimuli</li><li>Multiple experiments testing different aspects of selective attention</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Artificial task — dichotic listening not typical real-world experience</li><li>Small, unspecified samples — reliability concerns</li><li>Lab setting — demand characteristics possible</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Cognitive approach:</strong> filter model of attention; information-processing perspective</li><li><strong>Usefulness:</strong> cocktail party effect; design of warning systems in aviation</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Simons &amp; Chabris (1999) — Inattentional blindness</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--cog)"></span><span class="chip ch-c">Cognitive</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Attention</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate inattentional blindness — whether people fail to notice unexpected stimuli when engaged in a demanding visual task</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment — independent measures</li><li>Variables: easy/hard counting task; transparent/opaque unexpected object; umbrella woman vs gorilla</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>228 participants — undergraduate students</li><li>Harvard University — opportunity sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Participants watched a video of two teams passing a basketball</li><li>Asked to count passes of one team (easy or hard task)</li><li>Unexpected event: a person in a gorilla suit OR umbrella woman walked through the scene</li><li>After video: asked if they noticed anything unusual</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Only 54% noticed the gorilla under easy conditions</li><li>Hard task: only ~8% noticed unexpected events</li><li>Gorilla noticed more than umbrella woman (more distinctive)</li><li>Overall ~46% failed to notice the gorilla</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Attention is highly selective — unexpected stimuli go unnoticed even when visible</li><li>Task difficulty and similarity to attended objects affects noticing</li><li>We are less aware of our environment than we think</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Multiple conditions increase validity of findings</li><li>High mundane realism — video counting task is plausible</li><li>Replicated widely — robust and reliable findings</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Lab/video task — not identical to real-world divided attention</li><li>Student sample — low population validity</li><li>Demand characteristics — participants may have been suspicious</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Usefulness:</strong> road safety, aviation, radiology (missed tumours on scans)</li><li><strong>Individual vs situational:</strong> task demands (situational) determine what is noticed</li></ul></div></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ DEVELOPMENTAL ══════════ -->
+<div id="developmental" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Developmental Area</h1><p>4 studies · 2 themes · Children's behaviour &amp; moral development</p></div>
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Bandura et al. (1961) — Bobo doll / Transmission of aggression</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--dev)"></span><span class="chip ch-d">Developmental</span><span class="chip ch-cl">Classic</span>Theme: External influences on children's behaviour</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether children learn aggressive behaviour through observation and imitation of an adult model (social learning theory)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment — matched participants design</li><li>IV: aggressive vs non-aggressive model; same vs opposite sex model</li><li>DV: number of aggressive acts directed at Bobo doll</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>72 children (36 boys, 36 girls)</li><li>Aged 3–6 years from Stanford University nursery school</li><li>Opportunity sample — matched on pre-existing aggression</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Stage 1: Adult model played with toys including Bobo doll</li><li>Aggressive: hit/kicked Bobo, used verbal aggression ("Sock him!")</li><li>Non-aggressive: played quietly, ignored Bobo</li><li>Stage 2: Child mildly frustrated — taken away from attractive toys</li><li>Stage 3: Child placed in room with Bobo; observed through one-way mirror</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Aggressive model children showed significantly more aggression</li><li>Boys showed more physical aggression than girls</li><li>Children more likely to imitate same-sex models</li><li>Both physical AND verbal aggression were imitated</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Aggression is learned through observation and imitation — supports SLT</li><li>Children do not need direct reinforcement; observation is sufficient</li><li>Implications for media violence effects on children</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Well-controlled lab — matched participants design controls for individual differences</li><li>Large sample for a child study — 72 children</li><li>Foundation of Social Learning Theory and media effects research</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Low ecological validity — Bobo doll designed to be hit; not real aggression</li><li>Demand characteristics — children may have thought they should hit the doll</li><li>Ethical: deliberate frustration of children; exposure to aggression</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Nature vs nurture:</strong> nurture — aggression is learned not innate</li><li><strong>Socially sensitive:</strong> findings used in media censorship debates</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Chaney et al. (2004) — Funhaler study</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--dev)"></span><span class="chip ch-d">Developmental</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: External influences on children's behaviour</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether the Funhaler (gamified asthma spacer) improves medication compliance in young children vs standard spacer</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Quasi-experiment — cross-over within-participants design</li><li>Standard spacer first (2 weeks) → Funhaler (2 weeks)</li><li>DV: compliance rates reported by parents via questionnaire</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>32 asthmatic children aged 1.5–6 years</li><li>Recruited from a medical centre in Western Australia</li><li>Opportunity/volunteer sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Phase 1: 2 weeks using standard asthma spacer</li><li>Phase 2: Funhaler — spinning disk and whistle activated on correct inhale</li><li>Parents completed questionnaires on compliance in each phase</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>38% more parents reported medicating child on previous day with Funhaler</li><li>60% more children took the recommended number of doses</li><li>Parents found Funhaler easier; children more willing to use it</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Positive reinforcement built into medical devices improves compliance</li><li>Behaviourist principles (operant conditioning) applicable to medical contexts</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Directly addresses a real health problem — high applied value</li><li>Within-participants design reduces individual difference confounds</li><li>Parent-reported real home behaviour — ecological validity</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Very small pilot study (n=32) — cannot generalise</li><li>Order effect — Funhaler always second; not counterbalanced</li><li>Self-report from parents — social desirability bias</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Behaviourist perspective:</strong> operant conditioning — reward for correct inhaler technique</li><li><strong>Usefulness:</strong> direct medical application — potentially life-saving</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Kohlberg (1968) — Stages of moral development</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--dev)"></span><span class="chip ch-d">Developmental</span><span class="chip ch-cl">Classic</span>Theme: Moral development</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate how moral reasoning develops across childhood and into adulthood and identify universal stages of moral development</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Longitudinal semi-structured interview study</li><li>Qualitative data — responses analysed for stage of moral reasoning</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>72 boys aged 10, 13, 16 from Chicago; later followed to age 36</li><li>All male, all American — opportunity sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Boys presented with moral dilemmas (e.g. Heinz dilemma)</li><li>Open-ended questions: what should happen? why?</li><li>Responses assigned to one of six stages across three levels</li><li>Same boys followed up longitudinally</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Level 1 Pre-conventional (Stages 1&amp;2): punishment avoidance, self-interest</li><li>Level 2 Conventional (Stages 3&amp;4): maintaining social order</li><li>Level 3 Post-conventional (Stages 5&amp;6): universal ethical principles — rare</li><li>Stages were sequential — no skipping</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Moral reasoning develops in fixed universal stages</li><li>Quality of justification matters more than the moral decision itself</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Longitudinal — tracks genuine developmental change</li><li>Rich qualitative data — reveals reasoning processes</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Androcentric — boys only; Gilligan's critique of care-based morality</li><li>Ethnocentric — universality claims based on American boys only</li><li>Artificial dilemmas — Heinz is extreme and hypothetical</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Ethnocentrism:</strong> Lee et al. directly challenges universal claims</li><li><strong>Nature vs nurture:</strong> universal innate stages (nature) — Lee challenges with culture (nurture)</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card">
+<div class="study-hdr" onclick="togStudy(this)">
+  <div class="study-hdr-left"><div class="study-name">Lee et al. (1997) — Evaluations of lying and truth-telling</div>
+  <div class="study-meta"><span class="area-dot" style="background:var(--dev)"></span><span class="chip ch-d">Developmental</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Moral development</div></div><span class="arrow">▼</span>
+</div>
+<div class="study-body">
+<div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether Chinese and Canadian children evaluate lying and truth-telling differently, especially for pro-social vs anti-social behaviour</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Cross-cultural — independent measures (Chinese vs Canadian)</li><li>Three age groups: 7, 9, and 11</li><li>Self-report rating scale — ordinal data</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Children from China (mainland) and Canada</li><li>Ages 7, 9, 11 — school-based samples</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Short stories: character told truth or lied in pro-social or anti-social contexts</li><li>Children rated: was the character good or bad? (on a scale)</li><li>Same stories used in both countries with equivalent translations</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Canadian: truth-telling always positive; lying always negative</li><li>Chinese: lying to conceal pro-social behaviour (modesty) rated positively</li><li>Truth-telling about good deeds rated negatively by Chinese children (seen as boasting)</li><li>Cultural difference more pronounced with age</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Moral evaluations of lying are culturally relative, not universal</li><li>Challenges Kohlberg's universal stages — culture shapes moral development</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Cross-cultural — directly tests universality of Kohlberg</li><li>Challenges ethnocentrism in psychology</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Story-based — hypothetical, may not reflect real behaviour</li><li>Social desirability — children may give culturally "correct" answers</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Ethnocentrism:</strong> key study showing Western morality not universal benchmark</li><li><strong>Nature vs nurture:</strong> strongly supports nurture — culture shapes moral reasoning</li></ul></div></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ BIOLOGICAL ══════════ -->
+<div id="biological" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Biological Area</h1><p>4 studies · 2 themes · Brain regions &amp; plasticity</p></div>
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Sperry (1968) — Split brain study</div><div class="study-meta"><span class="area-dot" style="background:var(--bio)"></span><span class="chip ch-b">Biological</span><span class="chip ch-cl">Classic</span>Theme: Regions of the brain</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate separate functions of left and right hemispheres after surgical severing of the corpus callosum</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Quasi-experiment; IV not manipulated by researcher</li><li>Repeated measures within each patient for different stimuli</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>11 patients who had corpus callosotomy for severe epilepsy</li><li>All had pre-existing epilepsy — atypical sample</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Visual info presented to left OR right visual field</li><li>Stimuli flashed for &lt;0.1s to prevent eye movement</li><li>Tasks: name object (verbal), pick out by touch, draw it</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Left visual field (right hemisphere): could not name object verbally, but could identify by touch with left hand</li><li>Right visual field (left hemisphere): could name object verbally</li><li>Two hemispheres operate independently when corpus callosum severed</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Left hemisphere: language; right hemisphere: spatial/tactile tasks</li><li>The two hemispheres are functionally specialised</li><li>Corpus callosum vital for integrating the hemispheres</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Unique access to a rare condition — high scientific value</li><li>Multiple tasks across multiple patients — convergent validity</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Very small atypical sample — cannot generalise to neurotypical population</li><li>Pre-existing epilepsy may affect brain organisation</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Nature:</strong> biological basis of hemisphere specialisation</li><li><strong>Reductionism:</strong> reduces complex human cognition to hemisphere functions</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Casey et al. (2011) — Marshmallow test / Self-control and the brain</div><div class="study-meta"><span class="area-dot" style="background:var(--bio)"></span><span class="chip ch-b">Biological</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Regions of the brain</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate the neural correlates of self-control — specifically whether low-delayers in childhood show different brain activity as adults</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Longitudinal quasi-experiment; fMRI scanning</li><li>IV: high delayer vs low delayer (based on childhood marshmallow test)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Originally ~562 4-year-olds in marshmallow study (Mischel, 1960s)</li><li>Follow-up: 59 adults aged ~40 (high and low delayers)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Adults shown faces with happy, fearful, and neutral expressions</li><li>Hot task: respond to happy faces only (go/no-go paradigm)</li><li>fMRI scanned brain activity during the task</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Low delayers: greater activation in ventral striatum (reward region) during hot task</li><li>High delayers: greater activation in inferior frontal gyrus (inhibitory control)</li><li>Behavioural differences: low delayers slower/less accurate at suppressing responses</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Self-control ability is stable from childhood to adulthood</li><li>Low self-control is associated with greater reactivity in reward regions and less prefrontal inhibition</li><li>Biological basis for self-control in prefrontal/striatal circuitry</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Longitudinal — rare and valuable long-term data</li><li>Objective fMRI measure — avoids self-report bias</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Small follow-up sample — original attrition</li><li>Correlation not causation — brain differences may have other explanations</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Nature vs nurture:</strong> biological basis of stable self-control trait</li><li><strong>Determinism:</strong> implies self-control is biologically determined from childhood</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Blakemore &amp; Cooper (1970) — Visual cortex plasticity in kittens</div><div class="study-meta"><span class="area-dot" style="background:var(--bio)"></span><span class="chip ch-b">Biological</span><span class="chip ch-cl">Classic</span>Theme: Brain plasticity</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether early visual experience shapes the organisation of the visual cortex — testing neural plasticity in the critical period</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Lab experiment (animal) — independent measures</li><li>IV: reared in horizontal-only vs vertical-only stripe environment</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Kittens raised in cylindrical chambers from birth to 5 months</li><li>Only exposed to one orientation of stripes (horizontal or vertical)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Kittens wore neck ruffs to prevent seeing own body</li><li>After 5 months, normal visual environment</li><li>Later: single-cell recordings from visual cortex neurons</li><li>Behavioural tests: walked into horizontal/vertical obstacles</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Visual cortex neurons responded only to the experienced orientation</li><li>Horizontal-reared: cortex had no vertical-responsive neurons (and vice versa)</li><li>Behaviourally: kittens were blind to the unexperienced orientation</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Brain is highly plastic during the critical period — early experience shapes neural architecture</li><li>Without appropriate experience, neurons for certain stimuli fail to develop</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>High experimental control — IV tightly controlled from birth</li><li>Objective neurophysiological measures (electrode recordings)</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Animal study — cannot directly generalise to humans</li><li>Severe ethical concerns — kittens raised in impoverished conditions; permanently disabled</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Nature vs nurture:</strong> environment shapes biological neural architecture — strong nurture evidence</li><li><strong>Ethics:</strong> animal experimentation debate — knowledge vs welfare</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Maguire et al. (2000) — London taxi drivers' hippocampus</div><div class="study-meta"><span class="area-dot" style="background:var(--bio)"></span><span class="chip ch-b">Biological</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Brain plasticity</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether the hippocampi of experienced taxi drivers differ structurally from non-taxi drivers, and whether differences relate to navigation experience</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Quasi-experiment — MRI brain scanning</li><li>IV: taxi driver vs non-taxi driver</li><li>Also: correlation between years of experience and hippocampal volume</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>16 male London taxi drivers; mean 14.4 years experience</li><li>50 male controls (non-taxi drivers)</li><li>All right-handed, no neurological conditions</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>MRI scans of all participants' brains</li><li>VBM (Voxel-Based Morphometry) to compare grey matter volume</li><li>Pixel counting of hippocampal regions</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Taxi drivers had significantly larger posterior hippocampi than controls</li><li>Controls had larger anterior hippocampi</li><li>Positive correlation between years of experience and posterior hippocampal volume</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Human brain remains plastic into adulthood — navigation training enlarges hippocampus</li><li>Posterior hippocampus involved in spatial navigation and memory</li><li>Brain structure changes in response to environmental demands</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Objective brain scan measures — no self-report bias</li><li>Real-world expertise — high ecological validity compared to Blakemore</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Correlation cannot establish causation — large hippocampus may have led people to become taxi drivers</li><li>All male — cannot generalise to female population</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Nature vs nurture:</strong> experience reshapes biological brain structures — nurture alters nature</li><li><strong>Determinism:</strong> correlation — does biology determine career choice or vice versa?</li></ul></div></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ INDIVIDUAL DIFFERENCES ══════════ -->
+<div id="individual" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Individual Differences Area</h1><p>4 studies · 2 themes · Disorders &amp; measuring differences</p></div>
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Freud (1909) — Little Hans</div><div class="study-meta"><span class="area-dot" style="background:var(--ind)"></span><span class="chip ch-i">Ind diff</span><span class="chip ch-cl">Classic</span>Theme: Understanding disorders</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To document and provide a psychoanalytic explanation for a young boy's phobia of horses</li><li>To support the Oedipus complex theory and psychoanalytic interpretation of childhood anxiety</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Case study — qualitative longitudinal</li><li>Freud analysed letters written by Hans's father</li><li>Single participant — idiographic approach</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>One participant — Herbert ("Hans"), aged ~3–5</li><li>Son of a Viennese doctor; middle class family</li><li>Opportunity — Hans's father was a follower of Freud</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Hans's father wrote detailed accounts of Hans's behaviour and conversations</li><li>Freud provided interpretations via letters; met Hans only once</li><li>Data: Hans's dreams, fantasies, questions, and phobic responses analysed</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Hans developed fear of horses — especially being bitten</li><li>Freud interpreted horses as symbol of his feared father</li><li>Fear linked to castration anxiety and unresolved Oedipus complex</li><li>Phobia resolved by end of study (Hans matured through complex)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Phobias have unconscious symbolic origins — not purely behavioural</li><li>Oedipus complex is central to childhood anxiety</li><li>Psychoanalytic interpretation can explain and treat childhood phobias</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Rich in-depth data — detailed picture of child's inner world</li><li>One of first accounts of childhood psychological disorder</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Highly subjective — Freud interpreted data through pre-existing theory</li><li>Cannot generalise — single atypical case</li><li>Freud never directly observed Hans — relied on father's (biased) accounts</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Psychodynamic perspective:</strong> unconscious drives, symbolic interpretation</li><li><strong>Determinism:</strong> early childhood experiences determine adult personality</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Baron-Cohen et al. (1997) — Eyes Test / Theory of Mind in autism</div><div class="study-meta"><span class="area-dot" style="background:var(--ind)"></span><span class="chip ch-i">Ind diff</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Understanding disorders</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether high-functioning adults with autism or Asperger's syndrome have a Theory of Mind deficit, using a more sensitive test than previous tasks</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Quasi-experiment — independent measures</li><li>Three groups: autism/AS, Tourette syndrome, neurotypical controls</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>16 adults with autism/Asperger's syndrome; 50 neurotypical adults; 10 adults with Tourette syndrome</li><li>Opportunity sample from clinical records and community</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Eyes Test: 25 photographs of eyes — choose mental state word from pair of options</li><li>Also: gender recognition task (control); strange stories task (mentalising)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Autism/AS: mean 16.3/25 on Eyes Test; controls: 20.3/25; Tourette: 20.4/25</li><li>All groups performed equally on gender recognition (control task)</li><li>Women scored significantly higher than men on Eyes Test</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Adults with autism/AS have a specific ToM deficit — not general cognitive impairment</li><li>Even high-functioning autistic individuals struggle to read mental states from eyes</li><li>Supports "mindblindness" theory of autism</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>More sensitive than Sally-Anne false belief task — catches high-functioning adults</li><li>Control task rules out general perceptual or cognitive impairment</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Quasi-experiment — cannot manipulate IV; potential selection bias</li><li>Photographs are decontextualised — lacks ecological validity</li><li>Small autism sample (n=16)</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Individual differences:</strong> cognitive deficit distinguishes autistic from neurotypical</li><li><strong>Nature:</strong> ToM deficit suggests biological/neurological basis for autism</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Gould (1982) — A nation of morons / Army intelligence testing</div><div class="study-meta"><span class="area-dot" style="background:var(--ind)"></span><span class="chip ch-i">Ind diff</span><span class="chip ch-cl">Classic</span>Theme: Measuring differences</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To critically analyse the Army Alpha and Beta IQ testing programmes of WWI and evaluate the claims made from the data</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Secondary data analysis — critique of existing data</li><li>Qualitative and quantitative analysis of published test data and social policy</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>Gould analysed data from ~1.75 million WWI Army recruits</li><li>Tests administered by Yerkes and colleagues 1917–1919</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Army Alpha: written tests for literate recruits</li><li>Army Beta: non-verbal tests for illiterate/non-English speakers</li><li>Gould critically examined: test design, administration conditions, data interpretation, and social consequences</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results / Findings</div><div class="block-content"><ul><li>Tests were culturally biased — assumed American cultural knowledge</li><li>Testing conditions were appalling — crowded, no equipment</li><li>Average mental age of recruits found to be ~13 (flawed methodology)</li><li>Results used to justify racist immigration restrictions (1924 Immigration Act)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>IQ testing in WWI was methodologically flawed and culturally biased</li><li>Data was misused to justify racist social policy</li><li>Intelligence testing has a dangerous history of serving prejudiced agendas</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Exposes real-world harm from pseudoscience</li><li>Secondary analysis allows evaluation of data that would be unethical to collect today</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>Secondary source — Gould did not collect data himself</li><li>Gould's own analysis has been criticised for selective reading of evidence</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Ethnocentrism:</strong> central example of culturally biased measurement tools</li><li><strong>Socially sensitive:</strong> research used to justify discrimination and genocide</li></ul></div></div>
+</div></div></div>
+
+<div class="study-card"><div class="study-hdr" onclick="togStudy(this)"><div class="study-hdr-left"><div class="study-name">Hancock et al. (2011) — Language and psychopathy</div><div class="study-meta"><span class="area-dot" style="background:var(--ind)"></span><span class="chip ch-i">Ind diff</span><span class="chip ch-cl" style="background:rgba(124,111,247,.12);color:var(--acc)">Contemporary</span>Theme: Measuring differences</div></div><span class="arrow">▼</span></div>
+<div class="study-body"><div class="study-grid">
+  <div class="study-block"><div class="block-label" style="color:var(--blue)">🎯 Aim</div><div class="block-content"><ul><li>To investigate whether psychopathic murderers use different language patterns in murder narratives than non-psychopathic murderers</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--amber)">📐 Design</div><div class="block-content"><ul><li>Quasi-experiment — content analysis</li><li>IV: psychopathic vs non-psychopathic (based on PCL-R scores)</li><li>Computer-based linguistic analysis (LIWC)</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--purple)">👥 Sample</div><div class="block-content"><ul><li>52 male murderers in Canadian prisons</li><li>14 scored ≥30 on PCL-R (psychopathic); 38 non-psychopathic</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--teal)">📋 Procedure</div><div class="block-content"><ul><li>Each participant recorded an account of their crime</li><li>Transcripts analysed using Linguistic Inquiry and Word Count (LIWC)</li><li>PCL-R psychopathy scores obtained from prison records</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--green)">📊 Results</div><div class="block-content"><ul><li>Psychopaths used more past tense, fewer future/present tense words</li><li>More cause-and-effect language ("because", "so that")</li><li>More material (food, money, need) and fewer emotional words</li><li>More disfluencies (uh, um) — suggests greater cognitive effort</li></ul></div></div>
+  <div class="study-block"><div class="block-label" style="color:var(--acc)">💡 Conclusion</div><div class="block-content"><ul><li>Psychopaths perceive murder as a means to an end (pragmatic, goal-driven)</li><li>Murder is a past-tense, completed goal — emotionally detached language</li><li>Language analysis could assist in identifying psychopathy</li></ul></div></div>
+  <div class="study-block pro-block"><div class="block-label" style="color:var(--green)">✓ Strengths</div><div class="block-content"><ul><li>Objective computerised analysis — no researcher interpretation bias</li><li>Novel method (content analysis) for measuring individual differences in cognition</li></ul></div></div>
+  <div class="study-block con-block"><div class="block-label" style="color:var(--red)">✗ Weaknesses</div><div class="block-content"><ul><li>All male, Canadian prisoners — very low generalisability</li><li>Small psychopathic group (n=14)</li><li>Demand characteristics — prisoners may have crafted their accounts strategically</li></ul></div></div>
+  <div class="study-block link-block full-width"><div class="block-label" style="color:var(--acc)">🔗 Debate/area links</div><div class="block-content"><ul><li><strong>Individual differences:</strong> psychopathy as measurable cognitive/linguistic trait</li><li><strong>Usefulness:</strong> forensic application — offender profiling and risk assessment</li></ul></div></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ AREAS ══════════ -->
+<div id="areas" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Areas &amp; Perspectives</h1><p>Five areas · Key assumptions · Study links</p></div>
+<div class="area-card"><div class="area-hdr" onclick="togArea(this)"><div class="area-title"><span style="width:10px;height:10px;border-radius:50%;background:var(--social);display:inline-block"></span>Social Area</div><span class="arrow">▼</span></div>
+<div class="area-body"><div class="three-col">
+<div class="col-block"><h4 style="color:var(--social)">Core assumptions</h4><ul><li>Behaviour is determined by the social context we are in</li><li>Situational factors outweigh dispositional factors</li><li>Groups, authority, and conformity shape behaviour</li></ul></div>
+<div class="col-block"><h4 style="color:var(--social)">Strengths as an area</h4><ul><li>High ecological validity (Piliavin field experiment)</li><li>Directly applicable to real-world issues (obedience, bystander)</li><li>Cross-cultural replication (Levine, Bocchiaro)</li></ul></div>
+<div class="col-block"><h4 style="color:var(--social)">Weaknesses as an area</h4><ul><li>Ethical issues — deception (Milgram, Piliavin)</li><li>May underestimate dispositional factors</li><li>Lab studies lack mundane realism (Milgram, Bocchiaro)</li></ul></div>
+</div></div></div>
+<div class="area-card"><div class="area-hdr" onclick="togArea(this)"><div class="area-title"><span style="width:10px;height:10px;border-radius:50%;background:var(--cog);display:inline-block"></span>Cognitive Area</div><span class="arrow">▼</span></div>
+<div class="area-body"><div class="three-col">
+<div class="col-block"><h4 style="color:var(--cog)">Core assumptions</h4><ul><li>Mental processes (thinking, memory, attention) can be studied scientifically</li><li>Brain processes information like a computer</li><li>Behaviour is mediated by mental representation</li></ul></div>
+<div class="col-block"><h4 style="color:var(--cog)">Strengths</h4><ul><li>Highly applicable (Loftus → cognitive interview; Grant → revision)</li><li>Scientific methods — controlled experiments</li><li>Moved psychology beyond behaviourism</li></ul></div>
+<div class="col-block"><h4 style="color:var(--cog)">Weaknesses</h4><ul><li>Lab tasks lack ecological validity</li><li>Computer metaphor oversimplifies human cognition</li><li>Ignores emotional and social context</li></ul></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ DEBATES ══════════ -->
+<div id="debates" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Issues &amp; Debates</h1><p>Key OCR debates with study examples</p></div>
+<div class="debate-card"><div class="debate-hdr" onclick="togDebate(this)"><div class="debate-title">Nature vs Nurture</div><span class="arrow">▼</span></div>
+<div class="debate-body"><div class="two-col">
+<div class="col-block"><h4 style="color:var(--green)">Nature side</h4><ul><li>Sperry — hemisphere specialisation is biological</li><li>Casey et al. — self-control linked to brain structure</li><li>Baron-Cohen — ToM deficit as biological feature of autism</li><li>Kohlberg — universal innate moral stages</li></ul></div>
+<div class="col-block"><h4 style="color:var(--blue)">Nurture side</h4><ul><li>Bandura — aggression learned through observation</li><li>Blakemore &amp; Cooper — environment shapes visual cortex</li><li>Maguire — navigation experience enlarges hippocampus</li><li>Lee et al. — culture shapes moral judgements</li><li>Loftus &amp; Palmer — post-event language alters memory</li></ul></div>
+</div></div></div>
+<div class="debate-card"><div class="debate-hdr" onclick="togDebate(this)"><div class="debate-title">Individual vs Situational Explanations</div><span class="arrow">▼</span></div>
+<div class="debate-body"><div class="two-col">
+<div class="col-block"><h4 style="color:var(--ind)">Individual</h4><ul><li>Baron-Cohen — specific cognitive deficit in autism</li><li>Freud — unconscious individual drives</li><li>Casey et al. — stable individual self-control trait</li><li>Hancock — psychopathic personality traits</li></ul></div>
+<div class="col-block"><h4 style="color:var(--social)">Situational</h4><ul><li>Milgram — authority situation determined obedience</li><li>Piliavin — physical context (trapped subway) affected helping</li><li>Simons &amp; Chabris — task demands determined attention</li><li>Bocchiaro — situation drives compliance/whistleblowing</li></ul></div>
+</div></div></div>
+<div class="debate-card"><div class="debate-hdr" onclick="togDebate(this)"><div class="debate-title">Ethnocentrism</div><span class="arrow">▼</span></div>
+<div class="debate-body"><div class="two-col">
+<div class="col-block"><h4 style="color:var(--red)">Ethnocentric studies</h4><ul><li>Milgram — American male participants only</li><li>Kohlberg — American boys as universal baseline</li><li>Loftus &amp; Palmer — American students</li><li>Gould — tests designed with American cultural assumptions</li></ul></div>
+<div class="col-block"><h4 style="color:var(--green)">Challenges / solutions</h4><ul><li>Bocchiaro — Netherlands replication of Milgram</li><li>Lee et al. — cross-cultural challenge to Kohlberg</li><li>Levine — 23 cities across cultures</li></ul></div>
+</div></div></div>
+</div></div>
+
+<!-- ══════════ FLASHCARDS ══════════ -->
+<div id="flashcards" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Flashcards</h1><p>Drill all 20 studies · Flip to reveal · Self-rate your confidence</p></div>
+
+<div class="fc-controls">
+  <select class="fc-select" id="fc-area-select" onchange="buildDeck()">
+    <option value="all">All areas (20 studies)</option>
+    <option value="social">Social</option>
+    <option value="cognitive">Cognitive</option>
+    <option value="developmental">Developmental</option>
+    <option value="biological">Biological</option>
+    <option value="individual">Individual differences</option>
+  </select>
+  <button class="fc-btn primary" onclick="buildDeck()">🔀 Shuffle new deck</button>
+  <button class="fc-btn" onclick="buildDeck('weak')">🔴 Review weak cards only</button>
+</div>
+
+<div class="section-label">Aspects to drill</div>
+<div class="aspect-pills" id="aspect-pills">
+  <button class="apill on" data-asp="aim" onclick="toggleAsp(this)">🎯 Aim</button>
+  <button class="apill on" data-asp="design" onclick="toggleAsp(this)">📐 Design</button>
+  <button class="apill on" data-asp="sample" onclick="toggleAsp(this)">👥 Sample</button>
+  <button class="apill on" data-asp="procedure" onclick="toggleAsp(this)">📋 Procedure</button>
+  <button class="apill on" data-asp="results" onclick="toggleAsp(this)">📊 Results</button>
+  <button class="apill on" data-asp="conclusion" onclick="toggleAsp(this)">💡 Conclusion</button>
+  <button class="apill on" data-asp="strengths" onclick="toggleAsp(this)">✓ Strengths</button>
+  <button class="apill on" data-asp="weaknesses" onclick="toggleAsp(this)">✗ Weaknesses</button>
+</div>
+
+<div id="fc-progress" style="display:none">
+  <div class="fc-progress">
+    <span class="fc-counter" id="fc-counter">1 / 20</span>
+    <div class="fc-bar"><div class="fc-bar-fill" id="fc-bar-fill" style="width:5%"></div></div>
+    <span style="font-size:11px;color:var(--muted)">🟢 <span id="fc-green-count">0</span> · 🟡 <span id="fc-amber-count">0</span> · 🔴 <span id="fc-red-count">0</span></span>
+  </div>
+
+  <div class="card-scene" onclick="flipCard()">
+    <div class="card-flip" id="the-card">
+      <div class="card-face card-front" id="card-front">
+        <div class="card-face-label">
+          <span id="front-area-label">Social</span>
+          <span id="front-type-label" style="color:var(--acc)">Classic</span>
+        </div>
+        <div class="card-study-name" id="front-study-name"></div>
+        <div class="card-aspect" id="front-aspect"></div>
+        <div class="card-hint">Tap to reveal answer ↓</div>
+      </div>
+      <div class="card-face card-back" id="card-back">
+        <div class="card-face-label">
+          <span id="back-study-name"></span>
+          <span id="back-aspect-label" style="color:var(--acc)"></span>
+        </div>
+        <div class="card-answer" id="card-answer-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fc-nav">
+    <button class="fc-nav-btn" id="fc-prev-btn" onclick="prevCard()" disabled>←</button>
+    <button class="fc-flip-btn" onclick="flipCard()">Flip card</button>
+    <button class="fc-nav-btn" id="fc-next-btn" onclick="nextCard()">→</button>
+  </div>
+
+  <div class="fc-rate" id="fc-rate-btns">
+    <button class="fc-rate-btn rate-no" onclick="rateCard('red')">🔴 Not sure</button>
+    <button class="fc-rate-btn rate-maybe" onclick="rateCard('amber')">🟡 Getting there</button>
+    <button class="fc-rate-btn rate-yes" onclick="rateCard('green')">🟢 Got it!</button>
+  </div>
+</div>
+
+<div id="fc-start-msg" style="text-align:center;padding:2rem;color:var(--muted)">Select your options above and click <strong style="color:var(--acc)">Shuffle new deck</strong> to begin.</div>
+<div id="fc-done-panel" style="display:none"></div>
+</div>
+</div>
+
+<!-- ══════════ EXAM PRACTICE ══════════ -->
+<div id="examq" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Exam Practice</h1><p>AI-generated OCR-style questions · Write your answer · Get marked</p></div>
+
+<div class="stats-bar">
+  <div class="stat-pill"><span class="stat-pill-n" id="stat-total">0</span><span class="stat-pill-l">questions attempted</span></div>
+  <div class="stat-pill"><span class="stat-pill-n" id="stat-avg">—</span><span class="stat-pill-l">avg score %</span></div>
+  <div class="stat-pill"><span class="stat-pill-n" id="stat-streak">0</span><span class="stat-pill-l">🔥 streak</span></div>
+</div>
+
+<div class="section-label">Question type</div>
+<div class="qtype-grid">
+  <div class="qtype-card on" data-qt="outline" onclick="selectQType(this)">
+    <div class="qtype-card-title">Outline / Describe</div>
+    <div class="qtype-card-desc">Aim, procedure, results, one finding, one strength/weakness</div>
+    <div class="qtype-marks">2–4 marks</div>
+  </div>
+  <div class="qtype-card" data-qt="evaluate" onclick="selectQType(this)">
+    <div class="qtype-card-title">Evaluate / Explain</div>
+    <div class="qtype-card-desc">Validity issue, ethical issue, debate link, area connection</div>
+    <div class="qtype-marks">3–5 marks</div>
+  </div>
+  <div class="qtype-card" data-qt="compare" onclick="selectQType(this)">
+    <div class="qtype-card-title">Compare paired studies</div>
+    <div class="qtype-card-desc">Classic vs contemporary — similarity or difference</div>
+    <div class="qtype-marks">4–5 marks</div>
+  </div>
+  <div class="qtype-card" data-qt="section_b" onclick="selectQType(this)">
+    <div class="qtype-card-title">Section B — Debates</div>
+    <div class="qtype-card-desc">Area strength/weakness, debate discussion using studies</div>
+    <div class="qtype-marks">6–10 marks</div>
+  </div>
+  <div class="qtype-card" data-qt="essay" onclick="selectQType(this)">
+    <div class="qtype-card-title">15-mark essay</div>
+    <div class="qtype-card-desc">Compare two areas using strengths, weaknesses &amp; debates</div>
+    <div class="qtype-marks">15 marks</div>
+  </div>
+</div>
+
+<div class="exam-controls">
+  <select class="exam-select" id="exam-study-select">
+    <option value="any">Any study / topic</option>
+    <optgroup label="Social">
+      <option value="Milgram">Milgram (1963)</option>
+      <option value="Bocchiaro">Bocchiaro et al. (2012)</option>
+      <option value="Piliavin">Piliavin et al. (1969)</option>
+      <option value="Levine">Levine et al. (2001)</option>
+    </optgroup>
+    <optgroup label="Cognitive">
+      <option value="Loftus & Palmer">Loftus &amp; Palmer (1974)</option>
+      <option value="Grant">Grant et al. (1998)</option>
+      <option value="Moray">Moray (1959)</option>
+      <option value="Simons & Chabris">Simons &amp; Chabris (1999)</option>
+    </optgroup>
+    <optgroup label="Developmental">
+      <option value="Bandura">Bandura et al. (1961)</option>
+      <option value="Chaney">Chaney et al. (2004)</option>
+      <option value="Kohlberg">Kohlberg (1968)</option>
+      <option value="Lee">Lee et al. (1997)</option>
+    </optgroup>
+    <optgroup label="Biological">
+      <option value="Sperry">Sperry (1968)</option>
+      <option value="Casey">Casey et al. (2011)</option>
+      <option value="Blakemore & Cooper">Blakemore &amp; Cooper (1970)</option>
+      <option value="Maguire">Maguire et al. (2000)</option>
+    </optgroup>
+    <optgroup label="Individual Differences">
+      <option value="Freud">Freud (1909) — Little Hans</option>
+      <option value="Baron-Cohen">Baron-Cohen et al. (1997)</option>
+      <option value="Gould">Gould (1982)</option>
+      <option value="Hancock">Hancock et al. (2011)</option>
+    </optgroup>
+  </select>
+  <button class="qa-btn qa-new" onclick="generateQuestion()">⚡ Generate question</button>
+</div>
+
+<div id="question-area">
+  <div style="text-align:center;padding:2.5rem 1rem;color:var(--muted);background:var(--s1);border-radius:14px;border:0.5px solid var(--border)">
+    <div style="font-size:2rem;margin-bottom:.75rem">📝</div>
+    <div style="font-size:14px;font-weight:600;margin-bottom:.3rem;color:var(--text)">Ready to practice?</div>
+    <div style="font-size:12.5px">Select a question type and click Generate question to get started.</div>
+    <div style="font-size:11px;margin-top:.75rem;color:var(--acc)">Powered by Claude — generates infinite unique questions</div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ══════════ EXAM TIPS ══════════ -->
+<div id="examtips" class="sec">
+<div class="wrap">
+<div class="ph"><h1>Exam Technique — Paper 2</h1><p>Based on examiner reports and mark scheme patterns from past papers</p></div>
+<div class="section-label">Section A — Core study questions</div>
+<div style="background:var(--s1);border:0.5px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div class="note-block"><strong>"Outline the procedure" [2–4 marks]</strong>State WHAT happened in order — who did what, in what conditions, what was measured. Include specific details (e.g. numbers, conditions). Do NOT include results or conclusions. Cover all key steps — missing key steps loses marks.</div>
+    <div class="note-block"><strong>"Outline one finding" [2 marks]</strong>State a specific result with a number/statistic where possible. Then briefly explain what this shows. E.g. "65% of participants administered the maximum 450V shock, suggesting that most people will obey authority figures even when asked to harm others."</div>
+    <div class="note-block"><strong>"Outline one strength AND one weakness" [4 marks]</strong>For each: State the point → Explain WHY it is a strength/weakness in the context of THIS study → Link to a methodological concept (validity, reliability, ethics, generalisability). 2 marks per point = state + explain.</div>
+    <div class="note-block"><strong>"Explain one validity issue" [3 marks]</strong>Name the type of validity → Explain what it means → Apply specifically to this study. E.g. "Bandura's study has low ecological validity because the Bobo doll is specifically designed to be hit, so children may not have been showing real-world aggression."</div>
+    <div class="note-block"><strong>"Compare the two paired studies" [4 marks]</strong>Give one clear similarity AND one clear difference — or two of either. Always specify BOTH studies by name. Show you understand how the contemporary study updates/extends the classic.</div>
+    <div class="note-block"><strong>"How does [study] relate to [area]?" [3–5 marks]</strong>State the defining principles of the area → Link the study's aim/findings to those principles → Explain how the study exemplifies or contributes to that area.</div>
+  </div>
+</div>
+<div class="section-label">Section B — Areas, perspectives, debates</div>
+<div style="background:var(--s1);border:0.5px solid var(--border);border-radius:14px;padding:16px 18px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div class="note-block"><strong>15-mark comparison essay — top tips</strong>Use studies illustratively, not descriptively. Compare at the LEVEL OF THE AREA. Draw on debates (ethics, validity, scientific status). Reach a clear judgement in your conclusion.</div>
+    <div class="note-block"><strong>Debate essay structure</strong>Para 1: Define both sides. Para 2: Studies supporting A. Para 3: Studies supporting B. Para 4: Nuanced/interactionist view. Para 5: Conclusion with judgement. Always use findings as evidence, never just names.</div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+// ════════════════════════════════
+// NAV
+// ════════════════════════════════
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo(0,0);
+}
+function togStudy(hdr){var b=hdr.nextElementSibling,a=hdr.querySelector('.arrow');b.classList.toggle('open');a.classList.toggle('open');}
+function togArea(hdr){var b=hdr.nextElementSibling,a=hdr.querySelector('.arrow');b.classList.toggle('open');a.classList.toggle('open');}
+function togDebate(hdr){var b=hdr.nextElementSibling,a=hdr.querySelector('.arrow');b.classList.toggle('open');a.classList.toggle('open');}
+function filterArea(area,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('#study-table tr[data-a]').forEach(r=>{r.style.display=(area==='all'||r.getAttribute('data-a')===area)?'':'none';});
+}
+
+// ════════════════════════════════
+// FLASHCARD DATA
+// ════════════════════════════════
+const STUDIES = [
+  {name:"Milgram (1963)",area:"Social",type:"Classic",
+   aim:"To investigate whether ordinary Americans would obey an authority figure instructing them to harm an innocent person; to test situational explanations for obedience.",
+   design:"Lab experiment; independent measures; standardised procedure with confederate actor playing the learner; quantitative data (% obeying at each voltage).",
+   sample:"40 male participants aged 20–50; volunteer sample (newspaper ad); all American, New Haven Connecticut.",
+   procedure:"Participant assigned 'teacher'; confederate 'learner' in adjacent room. Teacher administered fake electric shocks (15–450V) for wrong answers. Four verbal prods used by experimenter if participant hesitated.",
+   results:"65% administered maximum 450V. All continued to at least 300V. Many showed signs of extreme stress (sweating, trembling, laughter).",
+   conclusion:"Ordinary people obey authority even when instructed to harm others. Situational factors (uniform, legitimate setting, proximity) override individual conscience. Challenges dispositional ('Germans are different') explanation.",
+   strengths:"Highly controlled standardised procedure enables replication. High mundane realism — participants genuinely believed the situation. Groundbreaking study that transformed understanding of obedience.",
+   weaknesses:"Serious ethical issues: deception, psychological harm, right to withdraw unclear. Low population validity: all male, American, volunteer sample. Lab setting may have caused demand characteristics — unusual to administer shocks."},
+  {name:"Bocchiaro et al. (2012)",area:"Social",type:"Contemporary",
+   aim:"To investigate obedience, disobedience, and whistleblowing when participants were asked to carry out an unethical task by an authority figure.",
+   design:"Lab experiment; independent measures; three possible responses: comply, disobey, or whistleblow; comparison with predicted behaviour from a separate questionnaire group.",
+   sample:"149 students (78 female, 71 male) from VU University Amsterdam; opportunity sample.",
+   procedure:"Participants asked to write an unethical recruitment letter for a fake sensory deprivation study. Could comply (write letter), disobey (refuse), or whistleblow (report via sealed ethics box in waiting room). A separate group predicted behaviour.",
+   results:"76.5% complied; 14.3% disobeyed only; 9.4% whistleblew. Predictors severely underestimated compliance and overestimated disobedience/whistleblowing.",
+   conclusion:"Most people comply with authority even when the task is clearly unethical. Whistleblowing is extremely rare. People overestimate their own moral courage. Supports Milgram in a more ethically acceptable paradigm.",
+   strengths:"More ethically acceptable than Milgram — no physical harm to others. Adds whistleblowing as a third response option, extending Milgram. Cross-cultural replication confirms obedience is not culturally unique to the USA.",
+   weaknesses:"Student sample — not representative, reduces population validity. Still involves deception — residual ethical concerns. Writing a letter is less extreme than electric shocks, making direct comparison with Milgram difficult."},
+  {name:"Piliavin et al. (1969)",area:"Social",type:"Classic",
+   aim:"To investigate conditions under which bystanders will help a stranger in need; to test whether characteristics of the victim and cost of helping affect bystander intervention.",
+   design:"Field experiment in natural environment (New York subway). Independent measures: drunk vs ill victim; race of victim varied. DVs: % helping, time to help, number of helpers.",
+   sample:"~4,450 passengers on the IND 8th Avenue subway line, New York. Opportunity sample — naturally occurring mix of races and genders.",
+   procedure:"Confederate 'victim' collapsed in subway carriage 70 seconds into ride. Conditions: drunk (smelled of alcohol, carried bottle) or ill (walked with a cane). Race of victim: Black or White confederate. Observers recorded helping covertly.",
+   results:"Ill victim helped 95% of the time within 70 seconds. Drunk victim helped ~50%. Slight in-group preference for own-race helping. Bystander effect was less pronounced than expected in the enclosed subway car.",
+   conclusion:"Helping follows a cost-reward calculation (Arousal: Cost-Reward model). Perceived cause of need (illness vs intoxication) affects helping. Physical context reducing escape options also reduces diffusion of responsibility.",
+   strengths:"High ecological validity — real-world setting, natural behaviour unaffected by demand characteristics. No demand characteristics — participants unaware of the study. Very large sample (~4,450 observations).",
+   weaknesses:"Serious ethical concerns: participants had no right to withdraw or give consent; some were distressed. Low internal validity — many uncontrolled extraneous variables in a field setting. Only NYC subway — limited cultural generalisability."},
+  {name:"Levine et al. (2001)",area:"Social",type:"Contemporary",
+   aim:"To investigate whether rates of helping behaviour vary across cultures and cities, and what cultural factors (e.g., simpatía) predict helping rates.",
+   design:"Cross-cultural field observation; 23 cities across multiple continents; three standardised helping scenarios.",
+   sample:"Passersby in 23 cities worldwide — opportunistic sample of whoever was present in each city.",
+   procedure:"Three scenarios: (1) dropping a pen, (2) limping with injured leg dropping magazines, (3) blind person needing help crossing road. Trained observers recorded helping behaviour in each city.",
+   results:"Rio de Janeiro and San José had highest helping rates. Kuala Lumpur and Amsterdam among the lowest. Overall 82.5% helped in the blind-crossing scenario. Simpatía (cultural value of helpfulness) predicted higher helping rates.",
+   conclusion:"Helping behaviour is culturally variable — not universal as Piliavin implied. Piliavin's cost-reward model cannot fully account for cross-cultural variation. Collectivist cultures with simpatía show consistently higher helping.",
+   strengths:"Cross-cultural design directly challenges ethnocentrism of Piliavin's US-only study. High ecological validity — natural field setting. Large number of cities (23) increases cultural generalisability.",
+   weaknesses:"No consent obtained — same ethical limitations as Piliavin. Situational confounders uncontrolled (time of day, weather, crowd density vary by city). City-level data does not capture individual variation within cultures."},
+  {name:"Loftus & Palmer (1974)",area:"Cognitive",type:"Classic",
+   aim:"To investigate whether the wording of a question about an event can alter a witness's memory of that event (post-event information effect).",
+   design:"Two lab experiments; independent measures. Exp 1 IV: verb used (smashed/collided/bumped/hit/contacted). Exp 2 IV: verb (smashed/hit/no question); DV in Exp 2: recall of non-existent broken glass one week later.",
+   sample:"Exp 1: 45 American university students; Exp 2: 150 American university students. Both opportunity samples.",
+   procedure:"Participants watched film clips of car accidents. Asked: 'About how fast were the cars going when they _____ each other?' Exp 2: one week later asked 'Did you see any broken glass?' (no glass in the film).",
+   results:"Exp 1: 'smashed' → mean 40.8 mph; 'contacted' → 31.8 mph. Exp 2: 'smashed' group 32% recalled glass; 'hit' 14%; control 12%.",
+   conclusion:"Post-event questioning distorts memory — supports reconstructive memory theory. Leading questions alter the memory trace itself (substitution hypothesis). Serious implications for reliability of eyewitness testimony in courts.",
+   strengths:"High experimental control — standardised film clips ensure all participants saw the same event; cause-and-effect established. Hugely applied — led to reforms in police interviewing and development of the cognitive interview.",
+   weaknesses:"Low ecological validity — film clips are not as emotionally arousing as witnessing a real accident. Student sample — limited population validity. Demand characteristics possible — unusual to estimate speed in a psychology study."},
+  {name:"Grant et al. (1998)",area:"Cognitive",type:"Contemporary",
+   aim:"To investigate whether recall is better when the learning environment at encoding matches the recall environment (context-dependent memory / encoding specificity principle).",
+   design:"Lab experiment; independent measures; 2×2 design: silent/noisy learning × silent/noisy test = four conditions (SS, SN, NS, NN).",
+   sample:"39 undergraduate psychology students from one university; opportunity sample.",
+   procedure:"Participants read a two-page article on psychoimmunology in either silence or with background café noise. Then completed a short-answer and multiple-choice test in either silence or noise.",
+   results:"Matched conditions (SS and NN) scored significantly higher than mismatched. Silent-silent condition produced the highest overall scores. Context match improved both short-answer and MCQ performance.",
+   conclusion:"Memory is context-dependent — recall is better when encoding context matches retrieval context. Supports the encoding specificity principle. Practical implication: students should revise in conditions similar to the exam environment.",
+   strengths:"Well-controlled 2×2 design isolates the context variable with precision. Directly applicable — relevant advice for how students should approach revision.",
+   weaknesses:"Student sample — low population validity. Artificial task (psychoimmunology article) — not representative of typical revision material. Short-term study — does not test whether context effects persist over longer delays."},
+  {name:"Moray (1959)",area:"Cognitive",type:"Classic",
+   aim:"To investigate selective attention — whether unattended messages can break through into conscious awareness, and what determines this breakthrough.",
+   design:"Lab experiment; repeated measures across three experiments. DV: recall or detection of material from the unattended ear in a dichotic listening task.",
+   sample:"Participants from Oxford University; small samples (exact numbers not specified); opportunity sample.",
+   procedure:"Participants wore headphones; different messages played simultaneously to each ear. Shadowing task: repeat attended ear aloud. Exp 1: word repeated 35× in unattended ear. Exp 2: own name in unattended ear. Exp 3: instruction to switch ears.",
+   results:"Exp 1: participants rarely noticed repeated words in the unattended ear. Exp 2: ~33% detected their own name in the unattended ear. Exp 3: ~20% followed the instruction to switch to the other ear.",
+   conclusion:"Most unattended information is filtered out — supports Broadbent's filter theory of attention. However, personally meaningful stimuli (own name) can break through — demonstrating an affective/personal significance filter. Attention is selective but not impermeable.",
+   strengths:"High experimental control — headphones allow precise, isolated delivery of stimuli. Multiple experiments test different aspects of selective attention, increasing convergent validity.",
+   weaknesses:"Highly artificial task — dichotic listening with headphones is not typical of real-world divided attention. Small, unspecified samples reduce reliability and generalisability. Lab setting may have produced demand characteristics."},
+  {name:"Simons & Chabris (1999)",area:"Cognitive",type:"Contemporary",
+   aim:"To investigate inattentional blindness — whether people fail to notice unexpected, clearly visible stimuli when engaged in a demanding visual task.",
+   design:"Lab experiment; independent measures. Variables: easy/hard counting task; transparent/opaque unexpected stimulus; umbrella woman vs gorilla.",
+   sample:"228 undergraduate students from Harvard University; opportunity sample.",
+   procedure:"Participants watched a video of two basketball teams passing a ball. Asked to count passes of one team (easy or hard counting task). An unexpected event — a person in a gorilla suit OR a woman with an umbrella — walked through the scene. After the video, asked if they noticed anything unusual.",
+   results:"Only ~54% noticed the gorilla in the easy condition. In the hard condition, only ~8% noticed unexpected events. The gorilla was noticed more than the umbrella woman (greater distinctiveness).",
+   conclusion:"Attention is highly selective — visible but unexpected stimuli go unnoticed when attention is directed elsewhere. Task difficulty and similarity to attended objects modulate noticing. We are far less aware of our environment than we assume.",
+   strengths:"Multiple conditions across many participants increase reliability. High mundane realism — video counting task resembles real dual-task situations (e.g., driving). Widely replicated — robust, generalisable findings.",
+   weaknesses:"Lab/video task is not identical to real-world divided attention (e.g., driving). Student sample — limited population validity. Possible demand characteristics — participants may suspect the study involves an unexpected event."},
+  {name:"Bandura et al. (1961)",area:"Developmental",type:"Classic",
+   aim:"To investigate whether children learn aggressive behaviour through observation and imitation of an adult model (social learning theory).",
+   design:"Lab experiment; matched participants design. IV: aggressive vs non-aggressive model; same vs opposite sex model. DV: number of aggressive acts directed at Bobo doll. Children matched on pre-existing aggression.",
+   sample:"72 children (36 boys, 36 girls) aged 3–6 from Stanford University nursery school; opportunity sample matched on pre-rated aggression.",
+   procedure:"Stage 1: Adult model played with toys. Aggressive condition: hit/kicked Bobo doll, used verbal aggression (e.g. 'Sock him!'). Non-aggressive: played quietly. Stage 2: Child mildly frustrated by being taken from attractive toys. Stage 3: Child in room with Bobo; observed through one-way mirror.",
+   results:"Aggressive model children showed significantly more aggression than non-aggressive model or control groups. Boys showed more physical aggression than girls. Children more likely to imitate same-sex models. Both physical and verbal aggression were imitated.",
+   conclusion:"Aggression is learned through observation and imitation without need for direct reinforcement — supports Social Learning Theory. Gender and model characteristics affect degree of imitation. Media violence may increase children's aggression.",
+   strengths:"Well-controlled lab with matched participants design — controls for individual differences; cause-and-effect established. Large sample for a child study (n=72). Foundation for Social Learning Theory and decades of media effects research.",
+   weaknesses:"Low ecological validity — the Bobo doll is specifically designed to be hit, so behaviour may not represent real aggression. Demand characteristics — children may have thought they were supposed to hit the doll. Ethical concerns — deliberate frustration of children; exposed to aggressive behaviour."},
+  {name:"Chaney et al. (2004)",area:"Developmental",type:"Contemporary",
+   aim:"To investigate whether a gamified asthma spacer device (the Funhaler) improves medication compliance in young children compared to a standard spacer.",
+   design:"Quasi-experiment; within-participants cross-over design. Standard spacer first (2 weeks) then Funhaler (2 weeks). DV: compliance rates reported by parents via questionnaire.",
+   sample:"32 asthmatic children aged 1.5–6 years recruited from a medical centre in Western Australia; opportunity/volunteer sample.",
+   procedure:"Phase 1 (2 weeks): children used standard asthma spacer as normal. Phase 2 (2 weeks): children used the Funhaler — a device with a spinning disk and whistle that activated when the child inhaled correctly (positive sensory feedback). Parents completed questionnaires on compliance in each phase.",
+   results:"38% more parents reported medicating their child on the previous day with the Funhaler. 60% more children took the recommended number of doses with the Funhaler. Parents found it easier and children were more willing to use it.",
+   conclusion:"Positive reinforcement built into medical devices significantly improves compliance. Behaviourist principles (operant conditioning) can be effectively applied to paediatric medical contexts. External stimuli that reward correct behaviour shape children's actions.",
+   strengths:"Directly addresses a real, serious health problem — high applied and clinical value. Within-participants design removes individual difference confounds. Parent-reported real home behaviour — higher ecological validity than a lab study.",
+   weaknesses:"Very small pilot study (n=32) — findings cannot be generalised without replication. Order effect — Funhaler always came second, so improvement may partly reflect practice (not counterbalanced). Self-report from parents — susceptible to social desirability bias."},
+  {name:"Kohlberg (1968)",area:"Developmental",type:"Classic",
+   aim:"To investigate how moral reasoning develops across childhood and into adulthood, and to identify a universal, invariant sequence of stages of moral development.",
+   design:"Longitudinal semi-structured interview study. Qualitative data — open-ended responses to moral dilemmas analysed for stage of moral reasoning.",
+   sample:"72 boys aged 10, 13, and 16 from Chicago; later followed up to age 36. All male, all American — opportunity sample.",
+   procedure:"Boys presented with hypothetical moral dilemmas (e.g. Heinz dilemma: should a man steal a drug to save his dying wife?). Asked open-ended questions: what should happen? why? Responses qualitatively analysed and assigned to one of six stages across three levels. Same participants followed up longitudinally.",
+   results:"Level 1 Pre-conventional (Stages 1&2): morality based on punishment avoidance and self-interest (young children). Level 2 Conventional (Stages 3&4): based on maintaining social order (most adults). Level 3 Post-conventional (Stages 5&6): based on universal ethical principles (rare). Stages were sequential — no participant skipped a stage.",
+   conclusion:"Moral reasoning develops in a fixed, universal, invariant sequence of stages. The quality of moral justification (how you reason) matters more than the decision itself. Post-conventional reasoning is rare in adulthood.",
+   strengths:"Longitudinal design tracks genuine developmental change in the same individuals over decades — rare and valuable data. Rich qualitative data from in-depth interviews reveals reasoning processes, not just outcomes.",
+   weaknesses:"Androcentric — boys only; Gilligan argued women's care-based morality is unfairly scored lower in this scheme. Ethnocentric — universal claims based only on American boys; Lee et al. demonstrates cultural variation undermines universality. Artificial dilemmas — the Heinz scenario is extreme and hypothetical; not how children typically make moral decisions."},
+  {name:"Lee et al. (1997)",area:"Developmental",type:"Contemporary",
+   aim:"To investigate whether Chinese and Canadian children evaluate lying and truth-telling differently, particularly in pro-social vs anti-social contexts, in order to test the universality of Kohlberg's moral stages.",
+   design:"Cross-cultural study; independent measures (Chinese vs Canadian children); three age groups (7, 9, 11 years); self-report rating scale producing ordinal data.",
+   sample:"Children from mainland China and Canada, aged 7, 9, and 11 years; school-based samples in each country.",
+   procedure:"Children presented with short stories in which a character either told the truth or lied. Two contexts: pro-social behaviour (e.g. doing a good deed then denying it) and anti-social behaviour. Children rated: was the character good or bad? (on a scale). Same stories used in both countries with culturally equivalent translations.",
+   results:"Canadian children consistently rated truth-telling positively and lying negatively — consistent with Kohlberg. Chinese children rated lying to conceal pro-social behaviour (modesty) positively, and truth-telling about good deeds negatively (seen as boasting). Cultural difference in moral ratings became more pronounced with age in Chinese children.",
+   conclusion:"Moral evaluations of lying and truth-telling are culturally relative, not universal. Kohlberg's stage theory cannot account for collectivist cultural values such as modesty. Culture is a fundamental influence on moral development.",
+   strengths:"Cross-cultural design directly tests Kohlberg's claim of universal moral stages. The age range allows developmental trajectories across cultures to be compared. Challenges ethnocentrism in psychology — broadens understanding of moral development.",
+   weaknesses:"Story-based hypothetical method — may not reflect real moral decisions children make in everyday life. Limited number of scenarios — few stories may not capture the full complexity of moral judgements. Social desirability — children may give answers that conform to their cultural norm rather than genuine views."},
+  {name:"Sperry (1968)",area:"Biological",type:"Classic",
+   aim:"To investigate the separate functions of the left and right cerebral hemispheres in patients whose corpus callosum had been surgically severed (split-brain patients).",
+   design:"Quasi-experiment — IV (severed corpus callosum) was not manipulated by the researcher. Repeated measures within each patient across different tasks and stimuli. Multiple tasks: visual, tactile, drawing.",
+   sample:"11 patients who had undergone corpus callosotomy (surgical severing of the corpus callosum) to treat severe epilepsy. All had pre-existing epilepsy — an unusual, atypical sample with no true control group.",
+   procedure:"Visual information was presented exclusively to the left OR right visual field (each projects to the opposite hemisphere). Participant fixated on a central point; stimuli flashed for less than 0.1 seconds to prevent eye movement. Tasks included: naming the object (verbal), picking it out by touch with left or right hand, and drawing it.",
+   results:"Left visual field (right hemisphere): patients could not name the object verbally, but could identify it by touch with the left hand. Right visual field (left hemisphere): patients could name the object verbally. When different stimuli shown to each eye simultaneously, patients were unaware of the conflict.",
+   conclusion:"The left hemisphere specialises in language and verbal processing; the right specialises in spatial and tactile tasks. The two hemispheres are functionally specialised and operate independently when the corpus callosum is severed. The corpus callosum is vital for integrating the two hemispheres.",
+   strengths:"Provided unique access to a rare neurological condition — extremely high scientific value that could not be studied otherwise. Multiple tasks across multiple patients increases convergent validity of findings.",
+   weaknesses:"Very small, atypical sample (n=11) with pre-existing epilepsy — cannot generalise findings to the neurotypical population. Pre-existing epilepsy may have altered brain organisation prior to surgery, confounding the results."},
+  {name:"Casey et al. (2011)",area:"Biological",type:"Contemporary",
+   aim:"To investigate the neural correlates of self-control in adulthood, and whether individuals who showed low delay of gratification as children show different brain activity as adults.",
+   design:"Longitudinal quasi-experiment. IV: high delayer vs low delayer (classified from childhood marshmallow test data). fMRI scanning and behavioural task in adulthood.",
+   sample:"Originally ~562 four-year-olds in Mischel's marshmallow study in the 1960s. Follow-up: 59 adults aged approximately 40, selected as high delayers or low delayers from childhood classification.",
+   procedure:"Adults completed a go/no-go paradigm (hot task): press a button in response to happy faces only; suppress response to fearful faces. fMRI scanned brain activity during the task. Cool control task also administered.",
+   results:"Low delayers showed greater activation in the ventral striatum (reward/desire region) when viewing alluring happy faces. High delayers showed greater activation in the right inferior frontal gyrus (inhibitory control region). Behaviourally, low delayers were slower and less accurate at suppressing responses.",
+   conclusion:"Self-control ability is remarkably stable from age 4 to adulthood. Low self-control is associated with heightened reactivity in reward regions and reduced prefrontal inhibitory control. There is a clear biological basis for self-control in prefrontal-striatal circuitry.",
+   strengths:"Longitudinal design spanning decades provides extremely rare and valuable data on the stability of psychological traits. Objective fMRI brain imaging measures avoid self-report bias.",
+   weaknesses:"Small follow-up sample (n=59) due to attrition over decades — limits statistical power. Correlation between brain differences and self-control — cannot establish causation; large hippocampus may precede, not result from, self-control."},
+  {name:"Blakemore & Cooper (1970)",area:"Biological",type:"Classic",
+   aim:"To investigate whether early visual experience during the critical period shapes the organisation of the visual cortex — providing evidence for neural plasticity.",
+   design:"Lab experiment using animals (kittens); independent measures. IV: reared in horizontal-only vs vertical-only stripe environment from birth.",
+   sample:"Kittens raised in cylindrical chambers from birth to approximately 5 months of age; each kitten experienced only horizontal or only vertical stripe patterns.",
+   procedure:"Kittens wore neck ruffs to prevent them from seeing their own bodies. After 5 months, moved to a normal visual environment. Later: single-cell recordings taken from visual cortex neurons to measure orientation selectivity. Behavioural tests: kittens placed in environments with horizontal or vertical obstacles.",
+   results:"Visual cortex neurons responded only to the orientation the kitten had experienced. Horizontally-reared kittens had no neurons responsive to vertical stimuli, and vice versa. Behaviourally, kittens were functionally blind to the unexperienced orientation — walking into obstacles of that orientation.",
+   conclusion:"The brain is highly plastic during the critical developmental period — early visual experience shapes the neural architecture of the visual cortex. Without appropriate environmental stimulation, neurons for certain stimulus types fail to develop or are lost.",
+   strengths:"Extremely high experimental control — IV was precisely controlled from birth. Objective neurophysiological measures (electrode recordings) provide direct evidence of neural changes.",
+   weaknesses:"Animal study — ethical concerns about raising kittens in severely impoverished conditions causing permanent disability. Cannot directly generalise findings to human critical period development."},
+  {name:"Maguire et al. (2000)",area:"Biological",type:"Contemporary",
+   aim:"To investigate whether the hippocampi of experienced London taxi drivers differ structurally from those of non-taxi drivers, and whether differences correlate with years of navigation experience.",
+   design:"Quasi-experiment; MRI brain scanning; independent measures (taxi drivers vs non-taxi driver controls). Also included a correlational analysis between years of experience and hippocampal volume.",
+   sample:"16 male licensed London taxi drivers (mean 14.4 years experience); 50 male non-taxi driver controls. All right-handed, no neurological conditions.",
+   procedure:"MRI scans obtained for all participants. Voxel-Based Morphometry (VBM) used to compare grey matter density across the whole brain. Pixel counting of specific hippocampal regions (anterior, posterior, overall volume) also conducted.",
+   results:"Taxi drivers had significantly larger posterior hippocampi than controls. Controls had proportionally larger anterior hippocampi. Positive correlation between years of taxi-driving experience and posterior hippocampal volume.",
+   conclusion:"The human brain remains structurally plastic into adulthood — extensive navigation experience enlarges the posterior hippocampus. The posterior hippocampus is specifically involved in spatial navigation and storing complex spatial memories. Brain structure changes in response to sustained environmental demands.",
+   strengths:"Objective brain imaging measures — no self-report bias. Real-world professional expertise — higher ecological validity than animal studies like Blakemore & Cooper.",
+   weaknesses:"Correlation cannot establish causation — it is possible that having a larger posterior hippocampus made people more likely to become taxi drivers in the first place. All-male sample — cannot generalise findings to women."},
+  {name:"Freud (1909)",area:"Individual Differences",type:"Classic",
+   aim:"To document and provide a psychoanalytic explanation for a young boy's horse phobia, and to support the Oedipus complex theory and psychoanalytic interpretation of childhood anxiety.",
+   design:"Case study — qualitative, longitudinal, idiographic approach. Freud analysed letters written by Hans's father; single participant.",
+   sample:"Single participant — Herbert ('Hans'), aged approximately 3–5 years. Son of a Viennese doctor; middle-class family. Opportunity — Hans's father was a follower of Freud.",
+   procedure:"Hans's father wrote detailed accounts of Hans's behaviour, conversations, dreams, and fantasies. Freud provided psychoanalytic interpretations via correspondence and met Hans on only one occasion. Data included Hans's questions, dreams, phobic responses, and symbolic interpretations.",
+   results:"Hans developed a fear of horses, particularly of being bitten. Freud interpreted horses as a symbolic representation of his feared father. The fear was linked to castration anxiety and the unresolved Oedipus complex. The phobia resolved as Hans matured through the complex.",
+   conclusion:"Phobias can have unconscious symbolic origins rooted in childhood sexuality — not purely behavioural conditioning. The Oedipus complex is central to childhood anxiety and neurosis. Psychoanalytic interpretation can explain and ultimately resolve childhood phobias.",
+   strengths:"Provides rich in-depth qualitative data — detailed picture of a child's inner psychological world. Historically significant — one of the first documented accounts of psychological disorder in a child.",
+   weaknesses:"Highly subjective — Freud interpreted data through the lens of pre-existing psychoanalytic theory (confirmation bias). Single atypical case — cannot generalise findings to other children. Freud never directly observed Hans; relied entirely on the father's accounts, which may have been biased."},
+  {name:"Baron-Cohen et al. (1997)",area:"Individual Differences",type:"Contemporary",
+   aim:"To investigate whether high-functioning adults with autism or Asperger's syndrome have a Theory of Mind deficit, using a more sensitive test than previous false-belief tasks.",
+   design:"Quasi-experiment; independent measures; three groups: autism/Asperger's syndrome, Tourette syndrome (control), neurotypical adults.",
+   sample:"16 adults with autism/Asperger's syndrome; 50 neurotypical adults; 10 adults with Tourette syndrome. Opportunity sample drawn from clinical records and community volunteers.",
+   procedure:"Eyes Test: participants shown 25 photographs of the eye region of faces and asked to choose the mental state word that best described what the person was thinking or feeling from two options. Gender recognition task (control). Strange stories task (advanced mentalising).",
+   results:"Autism/AS group: mean 16.3/25 on Eyes Test. Neurotypical controls: mean 20.3/25. Tourette group: mean 20.4/25. All groups performed equally on gender recognition. Women scored significantly higher than men on the Eyes Test.",
+   conclusion:"Adults with autism/AS have a specific Theory of Mind deficit — not a general cognitive or perceptual impairment. Even high-functioning autistic individuals struggle to read mental states from eyes alone. Supports the 'mindblindness' theory of autism.",
+   strengths:"More sensitive than the Sally-Anne false-belief task — able to detect ToM deficits in high-functioning adults. Gender recognition control task rules out the explanation that differences are due to general perceptual impairment.",
+   weaknesses:"Quasi-experiment — IV not manipulated; selection bias possible. Photographs are decontextualised — lacking the social and emotional context present in real interactions (low ecological validity). Small autism sample (n=16) limits statistical power."},
+  {name:"Gould (1982)",area:"Individual Differences",type:"Classic",
+   aim:"To critically analyse the WWI US Army Alpha and Beta IQ testing programmes, evaluate the methodology and conclusions drawn from the data, and expose the social consequences of misusing intelligence test results.",
+   design:"Secondary data analysis — critique of existing historical data. Qualitative and quantitative analysis of published test data, administration records, and subsequent social policy.",
+   sample:"Gould analysed data from approximately 1.75 million WWI US Army recruits. Tests were originally administered by Robert Yerkes and colleagues between 1917 and 1919.",
+   procedure:"Army Alpha: written intelligence tests for literate recruits. Army Beta: non-verbal pictorial tests for illiterate or non-English-speaking recruits. Gould critically examined: test design and cultural assumptions, administration conditions, statistical analysis methods, interpretation of results, and social policy consequences.",
+   results:"Tests were culturally biased — assumed American mainstream cultural knowledge not shared by immigrants. Testing conditions were often appalling — overcrowded, insufficient pencils, tests read aloud. Average mental age of recruits reported as ~13 was a methodological artefact. Results used to justify racist immigration restriction policies (culminating in the Immigration Act of 1924).",
+   conclusion:"The WWI IQ testing programme was methodologically flawed and culturally biased. The data was misinterpreted and politically exploited to justify racist social and immigration policies. Intelligence testing has a dangerous history of serving prejudiced societal agendas.",
+   strengths:"Exposes real, serious real-world harm caused by pseudoscientific measurement — demonstrates socially sensitive nature of psychological research. Secondary analysis allows critical evaluation of data that would be impossible and unethical to collect today.",
+   weaknesses:"Gould himself used secondary sources — did not have access to raw data; his own analysis has been criticised for selective reading of evidence. Gould's interpretation of Yerkes's intentions has been disputed by later historians."},
+  {name:"Hancock et al. (2011)",area:"Individual Differences",type:"Contemporary",
+   aim:"To investigate whether psychopathic murderers use systematically different language patterns in their accounts of their crimes compared to non-psychopathic murderers.",
+   design:"Quasi-experiment; content analysis using computerised linguistic software (LIWC). IV: psychopathic vs non-psychopathic (classified using the Psychopathy Checklist-Revised, PCL-R).",
+   sample:"52 male murderers in Canadian prisons. 14 scored ≥30 on the PCL-R (classified as psychopathic); 38 scored below 30 (non-psychopathic).",
+   procedure:"Each participant was recorded giving an account of their crime. Transcripts were analysed using the Linguistic Inquiry and Word Count (LIWC) computer programme. PCL-R psychopathy scores were obtained from existing prison records.",
+   results:"Psychopaths used more past tense and fewer present/future tense words. More cause-and-effect language ('because', 'so that'). More material need words (food, money, need) and fewer emotional words. More speech disfluencies (uh, um) — suggesting greater cognitive effort in constructing their narrative.",
+   conclusion:"Psychopaths perceive murder as a goal-oriented, pragmatic, past-completed action — reflected in their language patterns. Language analysis could potentially assist forensic professionals in identifying psychopathy. Psychopathy is measurable through linguistic behaviour.",
+   strengths:"Objective computerised (LIWC) analysis — eliminates researcher interpretation bias. Novel content analysis method provides a new, quantifiable way to measure individual differences in psychopathic cognition.",
+   weaknesses:"All male, incarcerated, Canadian sample — very limited generalisability to other populations or contexts. Small psychopathic subgroup (n=14) — limited statistical power. Demand characteristics possible — prisoners may have strategically crafted their accounts."}
+];
+
+const ASPECTS = ['aim','design','sample','procedure','results','conclusion','strengths','weaknesses'];
+const ASPECT_LABELS = {
+  aim:'🎯 Aim',design:'📐 Design',sample:'👥 Sample',procedure:'📋 Procedure',
+  results:'📊 Results',conclusion:'💡 Conclusion',strengths:'✓ Strengths',weaknesses:'✗ Weaknesses'
+};
+
+let deck = [];
+let deckIdx = 0;
+let isFlipped = false;
+let ratings = {};
+let scores = {green:0,amber:0,red:0};
+let sessionStats = {total:0,scoreSum:0,streak:0};
+
+function toggleAsp(btn){btn.classList.toggle('on');}
+
+function getActiveAspects(){
+  return [...document.querySelectorAll('.apill.on')].map(b=>b.getAttribute('data-asp'));
+}
+
+function getAreaFilter(){
+  return document.getElementById('fc-area-select').value;
+}
+
+function buildDeck(mode){
+  const area = getAreaFilter();
+  const aspects = getActiveAspects();
+  if(!aspects.length){alert('Please select at least one aspect to drill.');return;}
+
+  let studies = area==='all' ? STUDIES : STUDIES.filter(s=>s.area.toLowerCase()===area.toLowerCase());
+  if(mode==='weak'){
+    studies = studies.filter(s=>ratings[s.name]==='red' || ratings[s.name]==='amber');
+    if(!studies.length){alert('No weak cards yet! Study some cards first and rate yourself.');return;}
+  }
+
+  let cards = [];
+  for(const s of studies){
+    for(const asp of aspects){
+      if(s[asp]) cards.push({study:s, aspect:asp});
+    }
+  }
+  // Shuffle
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}
+  deck = cards;
+  deckIdx = 0;
+  isFlipped = false;
+  scores = {green:0,amber:0,red:0};
+  document.getElementById('fc-start-msg').style.display='none';
+  document.getElementById('fc-done-panel').style.display='none';
+  document.getElementById('fc-progress').style.display='block';
+  renderCard();
+}
+
+function renderCard(){
+  if(deckIdx>=deck.length){showDone();return;}
+  const {study,aspect} = deck[deckIdx];
+  const total = deck.length;
+  document.getElementById('fc-counter').textContent = `${deckIdx+1} / ${total}`;
+  document.getElementById('fc-bar-fill').style.width = `${((deckIdx)/total)*100}%`;
+  document.getElementById('fc-green-count').textContent = scores.green;
+  document.getElementById('fc-amber-count').textContent = scores.amber;
+  document.getElementById('fc-red-count').textContent = scores.red;
+  // Front
+  document.getElementById('front-area-label').textContent = study.area;
+  document.getElementById('front-type-label').textContent = study.type;
+  document.getElementById('front-study-name').textContent = study.name;
+  document.getElementById('front-aspect').textContent = ASPECT_LABELS[aspect];
+  // Back
+  document.getElementById('back-study-name').textContent = study.name;
+  document.getElementById('back-aspect-label').textContent = ASPECT_LABELS[aspect];
+  const content = study[aspect];
+  document.getElementById('card-answer-content').innerHTML = formatAnswer(content);
+  // Flip state
+  const card = document.getElementById('the-card');
+  card.classList.remove('flipped');
+  isFlipped = false;
+  // Nav
+  document.getElementById('fc-prev-btn').disabled = deckIdx===0;
+  document.getElementById('fc-next-btn').disabled = deckIdx>=deck.length-1;
+}
+
+function formatAnswer(text){
+  const points = text.split(/\.\s+(?=[A-Z])/).filter(p=>p.trim());
+  if(points.length<=1) return `<p>${text}</p>`;
+  return '<ul>' + points.map(p=>`<li>${p.replace(/\.$/,'')}</li>`).join('') + '</ul>';
+}
+
+function flipCard(){
+  const card = document.getElementById('the-card');
+  isFlipped = !isFlipped;
+  card.classList.toggle('flipped', isFlipped);
+}
+
+function prevCard(){if(deckIdx>0){deckIdx--;renderCard();}}
+function nextCard(){if(deckIdx<deck.length-1){deckIdx++;renderCard();}}
+
+function rateCard(rating){
+  if(deck.length===0)return;
+  const {study} = deck[deckIdx];
+  ratings[study.name] = rating;
+  scores[rating]++;
+  if(deckIdx<deck.length-1){deckIdx++;renderCard();}
+  else{showDone();}
+}
+
+function showDone(){
+  document.getElementById('fc-progress').style.display='none';
+  const panel = document.getElementById('fc-done-panel');
+  const total = scores.green+scores.amber+scores.red;
+  panel.style.display='block';
+  panel.innerHTML=`<div class="fc-done">
+    <div style="font-size:3rem;margin-bottom:.75rem">🎉</div>
+    <h2>Deck complete!</h2>
+    <p>You went through ${total} cards.</p>
+    <div class="fc-stats">
+      <div class="fc-stat"><div class="fc-stat-n" style="color:var(--green)">${scores.green}</div><div class="fc-stat-l">Got it 🟢</div></div>
+      <div class="fc-stat"><div class="fc-stat-n" style="color:var(--amber)">${scores.amber}</div><div class="fc-stat-l">Getting there 🟡</div></div>
+      <div class="fc-stat"><div class="fc-stat-n" style="color:var(--red)">${scores.red}</div><div class="fc-stat-l">Not sure 🔴</div></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="fc-btn primary" onclick="buildDeck()">🔀 New deck</button>
+      ${scores.red+scores.amber>0?`<button class="fc-btn" onclick="buildDeck('weak')">🔴 Review weak cards (${scores.red+scores.amber})</button>`:''}
+    </div>
+  </div>`;
+}
+
+// ════════════════════════════════
+// EXAM PRACTICE
+// ════════════════════════════════
+let selectedQType = 'outline';
+let currentQuestion = null;
+
+function selectQType(el){
+  document.querySelectorAll('.qtype-card').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  selectedQType = el.getAttribute('data-qt');
+}
+
+async function generateQuestion(){
+  const study = document.getElementById('exam-study-select').value;
+  const qtype = selectedQType;
+
+  const qArea = document.getElementById('question-area');
+  qArea.innerHTML = `<div style="text-align:center;padding:2rem;background:var(--s1);border-radius:14px;border:0.5px solid var(--border)">
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:10px">Generating question…</div>
+  </div>`;
+
+  const prompt = buildQuestionPrompt(qtype, study);
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`You are an OCR A Level Psychology examiner for Paper 2 (Core Studies). Generate authentic exam-style questions exactly as they would appear in OCR H567/02. Always respond with ONLY valid JSON, no markdown, no backticks. Format: {"question":"...","marks":N,"hint":"...","markScheme":"...","modelAnswer":"..."}`,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content.map(i=>i.text||'').join('');
+    const clean = text.replace(/```json|```/g,'').trim();
+    const q = JSON.parse(clean);
+    currentQuestion = q;
+    renderQuestion(q);
+  } catch(e) {
+    qArea.innerHTML = `<div style="background:var(--s1);border-radius:14px;border:0.5px solid rgba(232,93,117,.3);padding:18px;color:var(--red)">Failed to generate question. Please check your internet connection and try again.</div>`;
+  }
+}
+
+function buildQuestionPrompt(qtype, study){
+  const studyCtx = study==='any' ? 'any of the 20 OCR Paper 2 core studies' : study;
+  const types = {
+    outline:`Generate a 2–4 mark OCR A Level Psychology Paper 2 Section A question asking the student to 'outline' or 'describe' the aim, procedure, results, or one finding of ${studyCtx}. The markScheme should have one point per mark. modelAnswer should be a full band-3 answer.`,
+    evaluate:`Generate a 3–5 mark OCR A Level Psychology Paper 2 Section A question asking the student to 'explain' or 'evaluate' something about ${studyCtx} — e.g. one validity issue, one ethical issue, one strength, how it relates to an area or debate. modelAnswer should be explicit and detailed.`,
+    compare:`Generate a 4–5 mark OCR A Level Psychology Paper 2 Section A question asking the student to 'compare' a classic and its contemporary paired study (choose one pair involving ${studyCtx === 'any of the 20 OCR Paper 2 core studies' ? 'any OCR core study pair' : studyCtx}). Ask for one similarity and one difference, or two differences. modelAnswer should name both studies explicitly.`,
+    section_b:`Generate a 6–10 mark OCR A Level Psychology Paper 2 Section B question about an area, perspective, debate, or issues. It should ask the student to 'discuss', 'explain', or 'evaluate' using core studies as evidence. ${study!=='any'?`Make it relevant to ${study}.`:''}`,
+    essay:`Generate a 15-mark OCR A Level Psychology Paper 2 Section B comparison essay question: 'Compare the strengths and weaknesses of the [Area 1] area and the [Area 2] area of psychology.' Choose two different areas. The markScheme should explain the three bands (1–5, 6–10, 11–15) and what distinguishes them. modelAnswer should be a structured 5-paragraph plan.`
+  };
+  return types[qtype] || types.outline;
+}
+
+function renderQuestion(q){
+  const qArea = document.getElementById('question-area');
+  const id = 'q_'+Date.now();
+  qArea.innerHTML = `<div class="qcard" id="${id}">
+    <div class="qcard-header">
+      <span class="qmark-badge">${q.marks} mark${q.marks>1?'s':''}</span>
+      <div class="qtext">${escHtml(q.question)}</div>
+    </div>
+    ${q.hint?`<div class="qmeta"><span>💡 ${escHtml(q.hint)}</span></div>`:''}
+    <textarea class="answer-area" id="ans_${id}" placeholder="Write your answer here…" oninput="updateWordCount(this,'wc_${id}')"></textarea>
+    <div class="qa-actions">
+      <button class="qa-btn qa-submit" id="sub_${id}" onclick="submitAnswer('${id}',${q.marks})">Submit for marking</button>
+      <button class="qa-btn qa-skip" onclick="generateQuestion()">Skip / new question</button>
+      <span class="qa-word-count" id="wc_${id}">0 words</span>
+    </div>
+    <div id="fb_${id}"></div>
+  </div>`;
+}
+
+function updateWordCount(ta, wcId){
+  const words = ta.value.trim().split(/\s+/).filter(w=>w).length;
+  document.getElementById(wcId).textContent = words + (words===1?' word':' words');
+}
+
+async function submitAnswer(id, marks){
+  const ans = document.getElementById('ans_'+id).value.trim();
+  if(!ans){alert('Please write an answer first.');return;}
+  const sub = document.getElementById('sub_'+id);
+  sub.disabled=true;
+  sub.innerHTML='<div class="loading-dots" style="display:inline-flex"><span></span><span></span><span></span></div>';
+
+  const q = currentQuestion;
+  const fbEl = document.getElementById('fb_'+id);
+  fbEl.innerHTML=`<div style="padding:14px;color:var(--muted);font-size:12px;text-align:center"><div class="loading-dots"><span></span><span></span><span></span></div><div style="margin-top:8px">Marking your answer…</div></div>`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`You are an OCR A Level Psychology examiner marking Paper 2 answers. Be accurate, fair, and constructive. Respond ONLY with valid JSON, no markdown. Format: {"score":N,"outOf":N,"grade":"Strong/Good/Developing/Needs work","goodPoints":["..."],"missedPoints":["..."],"corrections":["..."],"examTip":"..."}`,
+        messages:[{role:'user',content:`Question (${marks} marks): ${q.question}\n\nMark scheme: ${q.markScheme}\n\nStudent answer: ${ans}\n\nMark this answer out of ${marks}. goodPoints = what the student did well. missedPoints = key points the student missed. corrections = factual errors (if any). examTip = one specific piece of advice for this student on this question type.`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content.map(i=>i.text||'').join('');
+    const clean = text.replace(/```json|```/g,'').trim();
+    const fb = JSON.parse(clean);
+    renderFeedback(fb, q, fbEl, id);
+    updateStats(fb.score, fb.outOf);
+  } catch(e) {
+    fbEl.innerHTML=`<div style="padding:12px;color:var(--red);font-size:12px">Could not mark answer. Please try again.</div>`;
+    sub.disabled=false;sub.textContent='Submit for marking';
+  }
+}
+
+function renderFeedback(fb, q, el, id){
+  const pct = Math.round((fb.score/fb.outOf)*100);
+  const fillColor = pct>=75?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+
+  let goodHtml = (fb.goodPoints||[]).map(p=>`<div class="fb-point fp-good"><span class="fb-point-icon">✓</span><span class="fb-point-text">${escHtml(p)}</span></div>`).join('');
+  let missHtml = (fb.missedPoints||[]).map(p=>`<div class="fb-point fp-miss"><span class="fb-point-icon">→</span><span class="fb-point-text">${escHtml(p)}</span></div>`).join('');
+  let corrHtml = (fb.corrections||[]).filter(c=>c&&c.trim()).map(p=>`<div class="fb-point fp-wrong"><span class="fb-point-icon">✗</span><span class="fb-point-text">${escHtml(p)}</span></div>`).join('');
+  let tipHtml = fb.examTip?`<div class="fb-point fp-tip"><span class="fb-point-icon">💡</span><span class="fb-point-text">${escHtml(fb.examTip)}</span></div>`:'';
+
+  el.innerHTML = `<div class="feedback-panel">
+    <div class="feedback-score-bar">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span class="fscore-num" style="color:${fillColor}">${fb.score}</span>
+          <span class="fscore-denom">/ ${fb.outOf}</span>
+        </div>
+        <div class="fscore-grade">${fb.grade||''}</div>
+      </div>
+      <div style="flex:1">
+        <div class="fscore-label">${fb.grade}</div>
+        <div class="fgrade-bar"><div class="fgrade-fill" style="width:${pct}%;background:${fillColor}"></div></div>
+      </div>
+    </div>
+    <div class="feedback-body">
+      ${goodHtml?`<div class="fb-section"><div class="fb-section-title" style="color:var(--green)">✓ What you did well</div>${goodHtml}</div>`:''}
+      ${missHtml?`<div class="fb-section"><div class="fb-section-title" style="color:var(--amber)">→ Points you could add</div>${missHtml}</div>`:''}
+      ${corrHtml?`<div class="fb-section"><div class="fb-section-title" style="color:var(--red)">✗ Corrections</div>${corrHtml}</div>`:''}
+      ${tipHtml?`<div class="fb-section"><div class="fb-section-title" style="color:var(--acc)">💡 Examiner tip</div>${tipHtml}</div>`:''}
+    </div>
+    <div class="model-answer-toggle" onclick="toggleModel('model_${id}',this)">
+      <span>▶</span> Show model answer
+    </div>
+    <div class="model-answer-body" id="model_${id}">
+      ${escHtml(q.modelAnswer||'').replace(/\n/g,'<br>')}
+    </div>
+    <div style="padding:12px 18px;background:var(--s2);border-top:0.5px solid var(--border)">
+      <button class="qa-btn qa-new" onclick="generateQuestion()" style="margin-right:8px">⚡ Next question</button>
+    </div>
+  </div>`;
+}
+
+function toggleModel(id,btn){
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  btn.querySelector('span').textContent = el.classList.contains('open')? '▼' : '▶';
+  btn.lastChild.textContent = el.classList.contains('open')?' Hide model answer':' Show model answer';
+}
+
+function updateStats(score, outOf){
+  sessionStats.total++;
+  sessionStats.scoreSum += Math.round((score/outOf)*100);
+  sessionStats.streak++;
+  document.getElementById('stat-total').textContent = sessionStats.total;
+  document.getElementById('stat-avg').textContent = Math.round(sessionStats.scoreSum/sessionStats.total)+'%';
+  document.getElementById('stat-streak').textContent = sessionStats.streak;
+}
+
+function escHtml(s){
+  if(!s)return'';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
